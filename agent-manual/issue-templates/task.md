@@ -34,4 +34,5 @@ in the result.
 constraints are named.
 
 **Done** when: the criteria are met **and verified**; work and docs changed
-together; CI is green; the change is merged.
+together; CI is green; the change is merged, and the ticket's state is read
+after the merge rather than assumed.

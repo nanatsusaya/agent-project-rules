@@ -119,7 +119,14 @@ check, point it at a project that has a `method.json`:
   [`agent-manual/pull-request.md`](agent-manual/pull-request.md)**, of which
   [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) is the
   copy GitHub reads. This repository adds no section of its own, and a check
-  holds the two files together.
+  holds the two files together. The template carries the shape only; what
+  follows is how to fill it.
+- **One concern per change. The owner merges, never the author.**
+- **A closing keyword is written once, where it is meant.** GitHub reads
+  `close`, `fix` and `resolve` in every inflection, in commit messages as well
+  as the description, and ignores the sentence around them — a negation or a
+  quotation closes the ticket too. It also ignores them entirely in a pull
+  request that does not target `main`. After a merge, read the ticket's state.
 - **Agent assistance is disclosed in the commit**, as an `Assisted-by:` trailer
   naming what assisted. It survives a squash merge and cannot be edited
   afterwards.

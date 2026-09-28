@@ -138,6 +138,37 @@ a step get followed sometimes, rules that demand restraint did not get followed
 at all. So the instruction says where the answer goes. A rule with a mechanism
 is a step; a rule without one is restraint.
 
+### A template carries shape; the instructions live in the operating rules
+
+Everything this handbook says about filling in a pull request is in
+[`operating-rules.md`](operating-rules.md). The template keeps its headings, a
+one-line prompt under each, and a sentence saying where the rules are.
+
+An instruction inside a template comment is read by somebody typing in a
+browser and by nobody else. An agent that writes a description to a file and
+hands it to the command line never opens the template, never renders the
+comment, and never passes the text through anything that would show it. The
+same study quoted above found the policy file itself opened in 3.5% of runs,
+and a template comment is a policy file with no reason ever to be opened. The
+operating rules, by contrast, are read at the start of every session.
+
+The failure this prevents is concrete: a warning written into a template after
+a mistake, and the same mistake made again by the next agent, which never saw
+it. That the warning existed is no help if nothing ever puts it in front of the
+one who needed it.
+
+The closing keyword is the case that forced this. *Closed from the change
+description* is a step in the operating rules, and a step that invokes a parser
+carries the parser's behaviour with it: GitHub reads the keyword in commit
+messages too
+([GitHub Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)),
+and it does not read the sentence around it, so a negation or a quotation
+closes the ticket as well. It stays out of the catalogue — it is one platform's
+behaviour, and a rule there has to hold independently of domain — and goes
+beside the step that invokes it, together with the one check that catches it:
+reading the ticket's state after the merge. The documentation describes no way
+to escape a keyword, and none is recommended here.
+
 ### Provenance goes in the commit, not the description
 
 Agent assistance is disclosed with an `Assisted-by:` trailer on the commit. The

@@ -192,7 +192,7 @@ its own `method.json`, so what it bound and which rules it narrowed is answered
 there rather than restated here — [C2](method/rules.md#c2) applies to this page
 as much as to anything else.
 
-## The five procedures
+## The procedures
 
 The moments a session turns over are where the seam actually bites, so each one
 has a procedure. These are the ones in daily use.
@@ -204,9 +204,10 @@ has a procedure. These are the ones in daily use.
 | `session-end` | Wind-down. Tidy the branches, park unfinished work at an honest stopping point, bring the state artefact current for what no change carried, ask the method-log question. |
 | `decision-record` | Write a decision down, and take it through its cycle from proposed to accepted. |
 | `adopt` | Introduce the method to a project, or review how well an existing one fits. |
+| `interview` | Ask the decisions a piece of work needs before it starts, in rounds, each with a recommended answer. |
 
 The first three are the loop: one when you sit down, one every time a change
-lands, one when you stop. The other two come up as needed.
+lands, one when you stop. The others come up as needed.
 
 They are plain Markdown, they read your project's own files, and they assume
 nothing about your stack. Put them wherever your agent already looks and they
@@ -220,7 +221,7 @@ Optional convenience, and there are two ways in that are not interchangeable:
 
 - **Subscribe** — the Claude Code plugin. A managed, read-only copy that
   updates as one unit when its version changes.
-- **Own the files** — the `skills` CLI. It writes the five procedures into your
+- **Own the files** — the `skills` CLI. It writes the procedures into your
   own directories, as files you can edit and rename.
 
 Pick one. Installing both leaves every skill there twice, once under each name.
@@ -302,7 +303,7 @@ rules out rather than linking to them, as [C3](method/rules.md#c3) asks.
 |---|---|---|
 | [`method/rules.md`](method/rules.md) | you, choosing what to adopt — and your agent, for the reasoning | **The catalogue.** The only normative document here. |
 | [`agent-manual/`](agent-manual/README.md) | your agent, once you have copied it into your project | [`operating-rules.md`](agent-manual/operating-rules.md) is the manual it reads; the rest are the shapes it refers to. |
-| [`plugins/agent-method/`](plugins/agent-method/README.md) | you, installing or adapting the procedures | The five procedures — plain Markdown, packaged as a Claude Code plugin. |
+| [`plugins/agent-method/`](plugins/agent-method/README.md) | you, installing or adapting the procedures | The procedures — plain Markdown, packaged as a Claude Code plugin. |
 | [`method/adapting.md`](method/adapting.md) | you, reshaping the rules for your project | How each archetype changes which rules apply. |
 | [`method/rationale.md`](method/rationale.md) | you, deciding whether to believe any of it | Why the method looks like this, what it costs, where it is weak. |
 | [`method/CHANGELOG.md`](method/CHANGELOG.md) | you, keeping an adoption current | What changed between versions, and what you have to do about it. |

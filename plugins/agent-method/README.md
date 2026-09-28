@@ -69,11 +69,49 @@ everybody reads.
 
 ## Installing them
 
-None of this is required. Every procedure above is a plain Markdown file, so
-copying the five directories into `.claude/skills/` works just as well. What
-changes is the name you type: a skill installed that way is `/session-start`,
-because the `agent-method:` prefix is the plugin's namespace and a copied
-directory has none.
+None of this is required. There are two installers, and they are not two
+spellings of the same thing:
+
+- **The plugin is a subscription.** A managed, read-only copy in Claude Code's
+  cache, replaced as a unit when its version changes — see
+  [How updates reach you](#how-updates-reach-you).
+- **The `skills` CLI gives you the files.** It writes the procedures into your
+  own directories, where they are yours to edit and to rename as the section
+  above suggests.
+
+Pick one. With both, every skill is there twice.
+
+What changes is the name you type. The `agent-method:` prefix is the plugin's
+namespace, so only the plugin gives you `/agent-method:session-start`. A skill
+installed any other way — by the CLI or by hand — is `/session-start`, because
+a directory in `.claude/skills/` has no namespace.
+
+### With the `skills` CLI
+
+[`skills`](https://github.com/vercel-labs/skills) (MIT, by Vercel Labs)
+installs skills from a git repository into the directories of Claude Code and
+several dozen other agents:
+
+```bash
+npx skills add nanatsusaya/agent-project-rules
+```
+
+It finds the five procedures through this repository's plugin manifests, so
+nothing here is laid out for its sake. `--list` shows what it would install
+without installing anything; run on 2026-09-28, it reported *Found 5 skills*
+and listed all five. An install into an agent other than Claude Code has not
+been tried here.
+
+For Claude Code the skills land in `.claude/skills/`, or in `~/.claude/skills/`
+with `-g`. By default each agent's directory links to one canonical copy;
+`--copy` writes independent copies instead. `npx skills update` fetches what has
+changed. All of that is from the project's own README (retrieved 2026-09-28,
+[github.com/vercel-labs/skills](https://github.com/vercel-labs/skills)).
+
+The CLI is a convenience, not a dependency. Copying the five directories under
+[`skills/`](skills/) into `.claude/skills/` by hand gives the same result.
+
+### As a plugin
 
 Installing as a plugin is three steps, not two. Adding a marketplace registers
 a catalogue and installs nothing, and an installed plugin is inert in the
@@ -102,6 +140,24 @@ repository for you alone.
 One thing that looks like a failure and is not: `/reload-plugins` reports
 `0 skills`. That counter covers a plugin's `commands/` directory only, and
 these live in `skills/`.
+
+**From Claude Code v2.1.275, steps 1 and 2 are one command.** It shows the
+marketplace it resolved and asks you to confirm before adding it, then opens the
+plugin's details as step 2 does:
+
+```
+/plugin install agent-method --marketplace nanatsusaya/agent-project-rules
+```
+
+From *Install and manage plugins* (retrieved 2026-09-28,
+[code.claude.com/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command](https://code.claude.com/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command)):
+
+> To install a plugin from a marketplace you haven't added yet, run
+> `/plugin install` in a Claude Code session and name the marketplace source
+> with `--marketplace`. Requires Claude Code v2.1.275 or later.
+
+That is cited, not verified: the Claude Code this was written with is older
+than that.
 
 ### Where `/plugin` is unavailable
 
@@ -138,8 +194,24 @@ The desktop app has a plugin browser as well, and a cloud session takes an
 ## How updates reach you
 
 **This plugin carries an explicit version rather than a commit SHA.** The
-manifests currently declare `0.6.0`. You get an update when that number
-changes, not on every commit.
+manifests currently declare `0.6.0`. A new version is one where that number
+has changed, not every commit.
+
+**And it reaches you when you ask for it.** Auto-update is off by default for
+this marketplace, as for every marketplace that is not Anthropic's own or added
+from claude.ai. Until you turn it on — in `/plugin`, on the **Marketplaces**
+tab — a new version arrives when you run:
+
+```bash
+claude plugin update agent-method@agent-project-rules
+```
+
+or choose **Update now** on the plugin in `/plugin`. From *Install and manage
+plugins* (retrieved 2026-09-28,
+[code.claude.com/docs/en/plugins/install#keep-plugins-updated](https://code.claude.com/docs/en/plugins/install#keep-plugins-updated)):
+
+> **Off by default**: every other marketplace, including the community
+> marketplace, third-party marketplaces, and local development marketplaces.
 
 The number moves when something that ships to users changes, which is before
 the release carrying it exists — so the version and the newest release tag are

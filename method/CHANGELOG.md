@@ -22,6 +22,47 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## 0.6
+
+Thirty-two rules in eleven clusters. None added, none withdrawn, none
+renumbered — every identifier you already refer to still means what it meant.
+One rule was reworded, and the manual's pull-request shape lost a line.
+
+### Worth re-reading
+
+**[G2](rules.md#g2) now says where an answer goes, and it depends on what holds
+the question.** It used to say, without qualification, that answered questions
+are rewritten in place as `R1..Rn`. That is right for a decision record and
+wrong for a pull request or a ticket, where rewriting a description destroys the
+question and gives the answer no permalink and no timestamp. The manual had
+already scoped it; the catalogue had not, so a project reading only the
+normative file was told to do exactly what the manual warns against. Now both
+say the same thing: rewrite in a record, answer as a separate entry anywhere
+else.
+
+**The pull-request shape no longer keeps a pointer line per answered
+question.** The answer is a comment naming its `O`-number, and the description
+is not touched at all. The line it replaces had to be written after the comment
+and before the merge, and the merge is what the answer triggers, so it was
+routinely missed — leaving a merged description that asks a question for good.
+[`agent-manual/README.md`](../agent-manual/README.md#an-answered-question-is-a-comment-never-an-edit)
+has the reasoning.
+
+**The operating rules say what happens to an answer given outside the pull
+request** — in conversation, in a meeting: whoever next works on it posts it as
+a comment, quoting it and saying when and where it was given.
+
+**What you have to do.** If your operating rules or your pull-request template
+were copied from the manual, drop the instruction to keep a
+`O1 — answered: … → <link>` line, and add the sentence about answers given
+elsewhere. Nothing in the check changes, and your `method.json` pin to `0.5`
+is reported as a difference rather than a failure.
+
+### Plugin
+
+**The plugin is `0.6.0`.** The `adopt` procedure writes a `method.json`, and the
+example it works from now pins `0.6`. What the five procedures do is unchanged.
+
 ## Checks 0.5.3
 
 Against catalogue 0.5, which does not move. **Nothing here changes an adopter's

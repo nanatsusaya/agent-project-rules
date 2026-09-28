@@ -98,7 +98,7 @@ check, point it at a project that has a `method.json`:
 - **An answer goes where the question is held.** In a decision record, rewrite
   `O1..On` in place as `R1..Rn` with what was decided and why. In a pull request
   or an issue, the answer is a **comment** naming the `O`-number, and the
-  description is not rewritten — it keeps one line per question. The reasoning
+  description is not touched. The reasoning
   is in
   [`agent-manual/README.md`](agent-manual/README.md#an-answered-question-is-a-comment-never-an-edit).
 - **Stop and ask** before: changing or withdrawing a rule in the catalogue ·

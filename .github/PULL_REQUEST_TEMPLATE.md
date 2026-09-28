@@ -28,10 +28,9 @@ This repository adds no section of its own.
 
 <!-- Numbered O1..On, each with a recommended default. Delete if none.
 
-     Do not answer them yourself. When the answer comes it arrives as a comment
-     on this pull request, naming the O-number — and nothing already written
-     here is rewritten. This section keeps one line per question:
-     `O1 — answered: … → <link>`.
+     Do not answer them yourself. The answer is a comment on this pull request,
+     naming the O-number, and this description is not touched to record it or
+     to point at it.
 
      An answer edited into this description overwrites the question it answers.
      It gets no permalink, notifies nobody, carries no timestamp except one

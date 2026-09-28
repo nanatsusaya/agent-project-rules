@@ -188,18 +188,37 @@ instead — for everyone who clones it, or for you alone.
 They also run outside any session, so nothing is loaded until one starts. In a
 session that is already open, `/reload-plugins` still applies.
 
-Both claims are from *Discover and install plugins* (retrieved 2026-08-05,
-[code.claude.com/docs/en/discover-plugins#install-plugins](https://code.claude.com/docs/en/discover-plugins#install-plugins)):
+Both claims are from *Install and manage plugins* (retrieved 2026-09-28,
+[code.claude.com/docs/en/plugins/install#install-from-your-shell](https://code.claude.com/docs/en/plugins/install#install-from-your-shell)):
 
-> To install without an interactive step, use the `claude plugin install` shell
-> command, which installs to user scope unless you pass `--scope`.
+> **Scope**: user scope by default. Pass `--scope project` or `--scope local` to
+> change it.
 
-> The `claude plugin install` shell command doesn't run in a session, so Claude
-> Code loads the plugins it installs the next time you start Claude Code, or
-> when you run `/reload-plugins` in a session that's already open.
+> **When the plugins load**: plugins it installs load the next time you start
+> Claude Code, or when you run `/reload-plugins` in a session that's already
+> open.
 
-The desktop app has a plugin browser as well, and a cloud session takes an
-`enabledPlugins` entry in `.claude/settings.json`.
+### In the desktop app, and in a cloud session
+
+The desktop app has a plugin browser in its local and SSH sessions: **+** next
+to the prompt box, then **Plugins**, then **Add plugin**. It has none in its
+cloud sessions.
+
+A cloud session loads none of what is described above. From the same page's
+*Cloud session* tab (retrieved 2026-09-28,
+[code.claude.com/docs/en/plugins/install#install-a-plugin](https://code.claude.com/docs/en/plugins/install#install-a-plugin)):
+
+> A cloud session, including the browser at claude.ai/code, has no plugin
+> browser and doesn't load the plugins you installed on your own machine or the
+> ones your repository's `.claude/settings.json` turns on.
+
+For plugins an organisation hands out to its members, the page points to
+managed settings instead. Owning the files is the route that does reach a cloud
+session, as long as they are installed into the project rather than with `-g`
+and then committed. A cloud session starts from a fresh clone, and *Configure
+cloud environments* lists the repository's `.claude/skills/` as carried over,
+"Part of the clone" (retrieved 2026-09-28,
+[code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup)).
 
 ## How updates reach you
 

@@ -35,8 +35,8 @@ goes in its *Binding*, marked as such.
 ## Commands
 
 ```bash
-npm run lint    # line width, this repository's links and spelling, install commands, plugin version, documented version and counts, copied templates
-npm test        # the counter-tests for all seven checks
+npm run lint    # line width, this repository's links and spelling, install commands, plugin version, documented version and counts, copied templates, skill pages
+npm test        # the counter-tests for all eight checks
 npm run mutate  # break each guard in turn; anything the suite still passes is uncovered
 ```
 
@@ -54,7 +54,7 @@ check, point it at a project that has a `method.json`:
 |---|---|
 | [`docs/`](docs/README.md) | the plain-language documentation for a reader deciding whether and how to use this; it explains and links, and never states a rule |
 | [`method/`](method/README.md) | the catalogue and its guides — the normative content |
-| [`checks/`](checks/README.md) | the coherence check, four house-style checks, a counter-test for each, and the mutation harness |
+| [`checks/`](checks/README.md) | the coherence check, seven house-style checks, a counter-test for each, and the mutation harness |
 | [`agent-manual/`](agent-manual/README.md) | what a project copies and rewrites — `operating-rules.md` is the manual, the rest are the shapes it refers to |
 | [`plugins/agent-method/`](plugins/agent-method/README.md) | the session procedures and the interview they call, as a Claude Code plugin |
 
@@ -113,7 +113,7 @@ check, point it at a project that has a `method.json`:
 - **Every skill has a page in `docs/skills/`** with the same five sections —
   *What it does*, *When to use it*, *What it will not do*, *It's working if*,
   *Where it fits* — and a new or changed skill changes its page in the same
-  change.
+  change. Checked by `npm run lint`.
 
 ## Working with the owner
 

@@ -1,9 +1,10 @@
 # agent-method
 
-Five procedures for
+Six procedures for
 [agent-project-rules](https://github.com/nanatsusaya/agent-project-rules),
-packaged as a Claude Code plugin. They cover the moments a session turns over,
-which is where the seam between sessions actually bites.
+packaged as a Claude Code plugin. Most cover the moments a session turns over,
+which is where the seam between sessions actually bites; one asks the decisions
+a piece of work needs before it starts.
 
 | Skill | When |
 |---|---|
@@ -12,6 +13,7 @@ which is where the seam between sessions actually bites.
 | `/agent-method:session-end` | Session wind-down. Tidy the branches, finish or park work honestly, bring the state artefact current for what no change carried, ask the method-log question. |
 | `/agent-method:decision-record` | Writing or reworking a decision record, and the cycle it goes through. |
 | `/agent-method:adopt` | Introducing the method into a project, or reviewing how well an existing one fits. |
+| `/agent-method:interview` | The decisions a piece of work needs before it starts, asked in rounds. Other procedures call it; you can run it on its own. |
 
 ## What the skills assume
 
@@ -53,12 +55,15 @@ day:
 | `session-end` | `feierabend` | `hasta-luego` | `stacco` |
 | `decision-record` | `adr` | `adr` | `adr` |
 | `adopt` | `passtdas` | `cuadra` | `torna` |
+| `interview` | `interview` | `interview` | `interview` |
 
-All five, because a table covering three of them reads as though the other two
-were meant to keep their English names. `decision-record` is the row where the
-advice above does not apply: `adr` is already what the thing is called out loud
-in every one of these languages, and inventing a colloquialism for a term
-people already say would cost recognition and buy nothing.
+All six, because a table covering some of them reads as though the others were
+meant to keep their English names. Two rows are where the advice above does
+not apply. `adr` is already what the thing is called out loud in every one of
+these languages, and inventing a colloquialism for a term people already say
+would cost recognition and buy nothing. `interview` keeps its name because
+other procedures call it by that name: rename it, and they fall back to the few
+sentences of it they carry, which is a poorer interview.
 
 These are plain ASCII on purpose. Whether the runtime accepts accented
 characters in a skill name is not something this repository has verified.
@@ -96,7 +101,7 @@ several dozen other agents:
 npx skills add nanatsusaya/agent-project-rules
 ```
 
-It finds the five procedures through this repository's plugin manifests, so
+It finds the procedures through this repository's plugin manifests, so
 nothing here is laid out for its sake. `--list` shows what it would install
 without installing anything; run on 2026-09-28, it reported *Found 5 skills*
 and listed all five. An install into an agent other than Claude Code has not

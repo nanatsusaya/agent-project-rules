@@ -24,7 +24,7 @@ mechanism.
 
 ## 0.7
 
-Thirty-three rules in eleven clusters. One rule added and three reworded. None
+Thirty-three rules in eleven clusters. One rule added and four reworded. None
 withdrawn, none renumbered — every identifier you already refer to still means
 what it meant.
 
@@ -58,6 +58,12 @@ merges are held by instruction, as every merge there already is.
 is no exception, and G4 is not one: it is the same boundary around more than
 one change. S2 counts the next entry of an approved plan as decision-free, and
 nothing else.
+
+**[G2](rules.md#g2) gains a *Binding*: questions arrive in rounds.** Where
+several are open at once, a round holds them together, and no question in a
+round depends on another in the same round. Asked one at a time, a long list
+costs a session per question; asked all at once, some of them guess at answers
+not yet given.
 
 **[S3](rules.md#s3) moves the state artefact's update into the work.** It used
 to be brought current at wind-down, and the seam after a merge brought the
@@ -98,6 +104,14 @@ current; it checks that the merged change did. `session-start` reports a
 missing wind-down, and `session-end` writes only what no change carried and
 always answers the method-log question. A procedure for running a plan is
 still to come.
+
+**A sixth procedure, `interview`,** carries G2's rounds out: the decisions a
+piece of work needs before it starts, asked as a frontier of questions whose
+prerequisites are settled, numbered `O1..On` across rounds, each with a
+recommended default, facts looked up rather than asked. It ends only when
+nothing is left to ask and the person confirms, and it never acts on what was
+agreed. Other procedures call it by name, which is why the rename table keeps
+it as `interview` in every language.
 
 ## 0.6
 

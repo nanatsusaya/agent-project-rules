@@ -80,6 +80,9 @@ invisible precisely because it was never presented as a choice.
 
 **Check:** `manual`
 
+**Binding.** Where several questions are open at once, they arrive in rounds,
+and no question in a round depends on another in the same round.
+
 <a id="g3"></a>
 ### G3 — The gate reviews direction and coherence, not lines
 

@@ -7,7 +7,8 @@ the accumulated shape of the trade-offs, not a decision tree.
 
 Six archetypes first, then the `method.json` vocabulary for writing an
 adaptation down. The second half is optional: step 1 of
-[adopting](README.md#adopting-it) is a legitimate stopping point.
+[adopting by hand](../docs/getting-started.md#by-hand) is a legitimate stopping
+point.
 
 ## Archetypes
 

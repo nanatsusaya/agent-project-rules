@@ -52,6 +52,7 @@ check, point it at a project that has a `method.json`:
 
 | Where | What |
 |---|---|
+| [`docs/`](docs/README.md) | the plain-language documentation for a reader deciding whether and how to use this; it explains and links, and never states a rule |
 | [`method/`](method/README.md) | the catalogue and its guides — the normative content |
 | [`checks/`](checks/README.md) | the coherence check, four house-style checks, a counter-test for each, and the mutation harness |
 | [`agent-manual/`](agent-manual/README.md) | what a project copies and rewrites — `operating-rules.md` is the manual, the rest are the shapes it refers to |

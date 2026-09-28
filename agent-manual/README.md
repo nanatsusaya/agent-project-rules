@@ -98,8 +98,19 @@ Two headings from the older generation are folded in rather than dropped:
 ### An answered question is a comment, never an edit
 
 When a decider answers an `O`-number, the answer is posted as a comment naming
-that number. The description keeps one line per question and nothing in it is
-rewritten.
+that number. Nothing in the description is rewritten, and nothing is added to it
+either.
+
+An earlier version of this shape kept one line per question in the description,
+pointing at the comment. It was dropped because it could not be kept. It is a
+second write with a deadline: the comment has to exist before the line can link
+to it, and both have to land before the merge, after which the description is
+not touched. But the answer is what triggers the merge, so the window between
+the two is often a few minutes, and the line was missed in exactly that window —
+while the comment, which has no deadline, was not. A merged pull request that
+missed it keeps a question with no answer beside it for good. The comment alone
+carries everything the line did, and the platform already shows it directly
+beneath the description.
 
 The alternative is the one agents reach for unprompted: rewrite `O1..On` as
 `R1..Rn` in the body, by analogy with what the operating rules say for a

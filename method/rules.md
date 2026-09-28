@@ -61,9 +61,13 @@ protection with it.
 When a task meets a decision that belongs to a person rather than to the agent
 — direction, sequencing, anything legal, outward-facing or expensive to reverse
 — the agent states the question, recommends a default, and stops. Number them
-`O1..On`; once answered, rewrite them in place as `R1..Rn` with what was
-decided and why. Who the person is varies; the rule is about *where the
-decision sits*, not how many people sit there.
+`O1..On`. Where the answer is written depends on what holds the question. In a
+decision record, rewrite them in place as `R1..Rn` with what was decided and
+why: the record is the artefact, and its history is the file's history.
+Anywhere else — a proposed change, a ticket — the answer is a separate entry
+naming its number, and the question stays as it was asked. Who the person is
+varies; the rule is about *where the decision sits*, not how many people sit
+there.
 
 **Why.** An agent asked to produce an outcome resolves ambiguity rather than
 surfacing it, because resolving is progress and surfacing is delay. The

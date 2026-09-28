@@ -101,9 +101,13 @@ guess who to ask will guess the nearest person or nobody.»
   decision record, rewrite `O1..On` in place as `R1..Rn` with what was decided
   and why: the record is the artefact, and its history is the file's history. In
   a pull request or an issue, the answer is a **comment** naming the
-  `O`-number — the description keeps one line per question and is not
-  rewritten. An answer edited over its own question destroys it, and has no
-  permalink and no timestamp except a typed one.
+  `O`-number, and the description is not touched — not to record the answer,
+  not to point at it. An answer edited over its own question destroys it, and
+  has no permalink and no timestamp except a typed one.
+- **An answer given somewhere else** — in conversation, in a meeting — reaches
+  the pull request or issue as a comment by whoever next works on it, quoting
+  the answer and saying when and where it was given. Until then the question
+  stands there unanswered, which is true.
 - **Stop and ask** in particular before: «amending an accepted decision · going
   outward-facing (publishing, deploying, changing a public URL) · introducing
   external network calls, secrets or telemetry · a major dependency upgrade».

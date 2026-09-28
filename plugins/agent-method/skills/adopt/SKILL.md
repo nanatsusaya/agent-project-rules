@@ -107,7 +107,7 @@ Once the shape is agreed, write `method.json` at the project root:
 ```json
 {
   "method": "agent-project-rules",
-  "version": "0.6",
+  "version": "0.7",
   "artefacts": {
     "operating-rules": "CLAUDE.md",
     "decisions": "docs/adr/",

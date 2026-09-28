@@ -7,7 +7,7 @@
   ],
 
   "method": "agent-project-rules",
-  "version": "0.6",
+  "version": "0.7",
 
   "artefacts": {
     "operating-rules": "CLAUDE.md",

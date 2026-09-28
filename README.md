@@ -54,13 +54,13 @@ session, differently — and nobody can tell that from a fresh decision.
 
 ## The catalogue
 
-Thirty-two rules in eleven clusters. A rule enters only if it holds regardless
+Thirty-three rules in eleven clusters. A rule enters only if it holds regardless
 of domain — for a software product as much as for a knowledge base with no code
 in it. That bar is what keeps the catalogue small.
 
 | Cluster | What it governs | Rules |
 |---|---|---|
-| **G** — The gate | who decides, and what they are accountable for | [G1](method/rules.md#g1) · [G2](method/rules.md#g2) · [G3](method/rules.md#g3) |
+| **G** — The gate | who decides, and what they are accountable for | [G1](method/rules.md#g1) · [G2](method/rules.md#g2) · [G3](method/rules.md#g3) · [G4](method/rules.md#g4) |
 | **D** — Decisions | writing choices down, and keeping them readable later | [D1](method/rules.md#d1) · [D2](method/rules.md#d2) · [D3](method/rules.md#d3) · [D4](method/rules.md#d4) |
 | **C** — Documentation | where facts live, and how they stay true | [C1](method/rules.md#c1) · [C2](method/rules.md#c2) · [C3](method/rules.md#c3) · [C4](method/rules.md#c4) · [C5](method/rules.md#c5) |
 | **M** — Method memory | why the way of working looks the way it does | [M1](method/rules.md#m1) · [M2](method/rules.md#m2) |
@@ -87,7 +87,7 @@ decide it, so nobody has to guess which half of the method is really enforced:
 > **Check:** `manual`
 
 That is [C4](method/rules.md#c4). Identifiers are permanent and never reused, so
-a project can point at one and mean something stable. All thirty-two are in
+a project can point at one and mean something stable. All thirty-three are in
 [`method/rules.md`](method/rules.md).
 
 ## Make it yours
@@ -124,7 +124,7 @@ divergences.
 ```json
 {
   "method": "agent-project-rules",
-  "version": "0.6",
+  "version": "0.7",
   "artefacts": {
     "operating-rules": "CLAUDE.md",
     "decisions": "docs/adr/",
@@ -299,7 +299,7 @@ The catalogue names no tool and no stack. The plugin targets one runtime
 because that is what the author uses; the `method.json` roles exist so the
 check never needs to know what is reading the repository.
 
-**Thirty-two rules sounds like a lot.**
+**Thirty-three rules sounds like a lot.**
 It is a catalogue to choose from, not a checklist to satisfy. Every rule you
 adopt spends context on every task, which is exactly why the bar for admission
 is high and why [A1](method/rules.md#a1) tells you to drop what does not fit.

@@ -82,7 +82,10 @@ keeping the catalogue small.
 
 **The absolute gate costs a cycle on trivial changes.** A two-line correction
 takes the same route as a redesign. That is the deliberate price of
-[G1](rules.md#g1) having no exceptions.
+[G1](rules.md#g1) having no exceptions. [G4](rules.md#g4) lowers it for work
+planned in advance, by letting a person approve a plan instead of each change,
+and it pays for that with a list of judgement calls someone has to read and a
+plan that has to be written well enough to be closed.
 
 **Written rules outnumber checked ones**, and that ratio is the honest measure
 of how much of this is actually in force. Every rule marked `manual` depends on

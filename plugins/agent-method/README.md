@@ -138,7 +138,7 @@ The desktop app has a plugin browser as well, and a cloud session takes an
 ## How updates reach you
 
 **This plugin carries an explicit version rather than a commit SHA.** The
-manifests currently declare `0.6.0`. You get an update when that number
+manifests currently declare `0.7.0`. You get an update when that number
 changes, not on every commit.
 
 The number moves when something that ships to users changes, which is before

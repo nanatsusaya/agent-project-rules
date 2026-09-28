@@ -22,6 +22,56 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## 0.7
+
+Thirty-three rules in eleven clusters. One rule added. None withdrawn, none
+renumbered — every identifier you already refer to still means what it meant.
+
+### New rule
+
+**[G4](rules.md#g4) — A plan can be approved instead of each change.** For one
+session, the person who holds the gate may approve a plan, and within it the
+agent merges its own changes. [G1](rules.md#g1) forbade that outright, and
+[S2](rules.md#s2) stopped the agent before every next piece of work, so work
+that had been fully planned still waited a review cycle per change and stood
+still whenever nobody was there to answer.
+
+G1's reasoning was never about how many changes sit inside the boundary; it is
+about who draws it. G4 leaves that with the human and adds the five conditions
+that stop the boundary moving back to the agent: the grant is explicit and ends
+with the session; the plan is a closed list that expires rather than extending;
+anything not on it, including a task that grew, needs a new grant; an open
+question parks its task; and each change lists its judgement calls, which is
+what the human reviews instead of the diffs. The first two carry the rule. The
+failure it names is a run that outlives its list: the agent carries on because
+the next step seems obvious, and "the human approved the plan" quietly becomes
+"the human reads a summary afterwards".
+
+The grant changes no platform setting. Where the trunk requires an approving
+review, a run cannot merge past it and waits; where it requires none, the run's
+merges are held by instruction, as every merge there already is.
+
+### Worth re-reading
+
+**[G1](rules.md#g1) and [S2](rules.md#s2) point at G4.** G1 still says there
+is no exception, and G4 is not one: it is the same boundary around more than
+one change. S2 counts the next entry of an approved plan as decision-free, and
+nothing else.
+
+**What you have to do.** Nothing, unless you want to work from plans. If you
+do, the manual's *Delivery* section has a bullet for it; name in your operating
+rules who approves a plan, and in a team leave your required reviews where
+they are. If you do not, drop G4 as an adaptation ([A2](rules.md#a2)) or delete
+that bullet — the rule grants something, and a project that never uses it
+loses nothing. Your `method.json` pin to `0.6` is reported as a difference
+rather than a failure.
+
+### Plugin
+
+**The plugin is `0.7.0`.** The example `method.json` that `adopt` works from
+now pins `0.7`. What the five procedures do is unchanged; a procedure for
+running a plan is still to come.
+
 ## 0.6
 
 Thirty-two rules in eleven clusters. None added, none withdrawn, none

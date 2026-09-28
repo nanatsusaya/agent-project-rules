@@ -89,7 +89,9 @@ Several rules change shape when more than one person is involved.
 
 - [G1](rules.md#g1) gets easier and stronger: the ordinary approving-review
   requirement already provides the boundary. The zero-approvals binding is for
-  the solo case and should not be carried over.
+  the solo case and should not be carried over. It also means a plan approved
+  under [G4](rules.md#g4) cannot merge past a required review, and should not:
+  a change that needs one waits, and the run takes the next entry.
 - [M1](rules.md#m1) stops being optional bookkeeping. With one maintainer the
   method log competes with memory; with several it is the only place the
   reasons behind a rule are shared, and without it reviewers enforce the same
@@ -145,7 +147,7 @@ Binding a role means naming the file or directory that plays it. That is what
 ```json
 {
   "method": "agent-project-rules",
-  "version": "0.6",
+  "version": "0.7",
   "artefacts": {
     "operating-rules": "CLAUDE.md",
     "decisions": "docs/adr/",

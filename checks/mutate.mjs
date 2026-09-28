@@ -44,6 +44,7 @@ const SUITES = {
   version: 'checks/documented-version.test.mjs',
   template: 'checks/copied-templates.test.mjs',
   counts: 'checks/documented-counts.test.mjs',
+  pages: 'checks/skill-pages.test.mjs',
 };
 
 /**
@@ -735,6 +736,100 @@ const MUTATIONS = [
     file: 'checks/lib/copied-templates.mjs',
     from: "text.replace(/\\r\\n?/g, '\\n').replace(/\\s+$/, '')",
     to: 'text',
+  },
+
+  // --- the skill-pages check
+  {
+    // The set is a decision, which is why the counter-test writes the five out
+    // rather than importing them.
+    label: 'the skill-page section set grows a sixth',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: "  'Where it fits',\n];",
+    to: "  'Where it fits',\n  'Watched',\n];",
+  },
+  {
+    // A moved skills directory lands here: nothing to compare, nothing
+    // reported, and a run that reads like agreement.
+    label: 'no skills found reads as every skill having its page',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '  if (!skills.length) {',
+    to: '  if (false) {',
+  },
+  {
+    label: 'no pages found reads as every page having its skill',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '  if (!names.length) {',
+    to: '  if (false) {',
+  },
+  {
+    // The failure the check exists for: a skill merged without its page.
+    label: 'a skill with no page passes',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '    if (!names.includes(skill)) {',
+    to: '    if (false) {',
+  },
+  {
+    label: 'a page with no skill behind it passes',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '    if (!skills.includes(name)) {',
+    to: '    if (false) {',
+  },
+  {
+    label: 'a page missing a section passes',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '    if (missing.length) {',
+    to: '    if (false) {',
+  },
+  {
+    // The five present but in any order: the same question answered in a
+    // different place on different pages.
+    label: 'the five sections may come in any order',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '    else from = at + 1;',
+    to: '    else from = 0;',
+  },
+  {
+    label: 'a page the index does not link passes',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '      if (!linked.has(`${name}.md`)) {',
+    to: '      if (false) {',
+  },
+  {
+    // The false-alarm half: a `##` shown inside a fence is not a section.
+    label: 'a heading inside a fence counts as a section',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: 'return blankFences(normaliseEol(text))',
+    to: 'return normaliseEol(text)',
+  },
+  {
+    label: 'a third-level heading counts as a section',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '/^##\\s+\\S/.test(l)',
+    to: '/^#{2,}\\s+\\S/.test(l)',
+  },
+  {
+    label: 'a link inside a fence links the page',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '  const body = blankFences(normaliseEol(text));',
+    to: '  const body = normaliseEol(text);',
+  },
+  {
+    label: 'an index link with an anchor is not read as a link',
+    suite: 'pages',
+    file: 'checks/lib/skill-pages.mjs',
+    from: '(?:#[^)]*)?',
+    to: '',
   },
 ];
 

@@ -1,7 +1,7 @@
 # Checks
 
-Seven of them, and only the first is meant for your project.
-[`check-method.mjs`](check-method.mjs) is the coherence check. The other six
+Eight of them, and only the first is meant for your project.
+[`check-method.mjs`](check-method.mjs) is the coherence check. The other seven
 are [this repository's own house style](#this-repositorys-own-checks) and know
 nothing about an adopting project.
 
@@ -201,7 +201,7 @@ read.
 ## This repository's own checks
 
 None of them is part of the method. They enforce conventions this repository
-holds itself to, and an adopting project is free to ignore all six.
+holds itself to, and an adopting project is free to ignore all seven.
 
 ```bash
 node checks/line-width.mjs <project-path> [--limit 80]
@@ -369,6 +369,32 @@ A file that cannot be read is a finding rather than a pass. Deleting the copy is
 the cheapest way to make a same-content check agree, so "there is nothing there"
 must not arrive as agreement.
 
+```bash
+node checks/skill-pages.mjs
+```
+
+[`skill-pages.mjs`](skill-pages.mjs) holds the skills to the pages that
+explain them. Every directory under `plugins/agent-method/skills/` with a
+`SKILL.md` in it needs a page in [`docs/skills/`](../docs/skills/README.md),
+every page there needs a skill behind it, and the index links every page. The
+convention is under *Writing conventions* in
+[`CLAUDE.md`](../CLAUDE.md#writing-conventions); this is the command that
+decides whether it still holds. A skill is the part a reviewer reads, and its
+page is the part nobody thinks to ask for — so without a check, the
+documentation quietly describes seven procedures of eight.
+
+**Each page carries the same five sections, in order:** *What it does*, *When
+to use it*, *What it will not do*, *It's working if*, *Where it fits*. A page
+may add a section of its own between them, as `autopilot` does to explain how a
+run is kept alive; what it may not do is drop, rename or move one of the five,
+because then the same question is answered in a different place on different
+pages. Only second-level headings count, and fenced blocks are blanked first,
+so a heading shown in an example is not read as a section.
+
+Finding no skills, or no pages, is a finding rather than a pass. A moved
+directory is the likeliest way to get there, and a comparison of two empty
+lists reports nothing — which is exactly what agreement looks like.
+
 ## The counter-tests
 
 ```bash
@@ -381,13 +407,14 @@ which check fired. Asserting the exit code alone would pass a check that fails
 for the wrong reason.
 
 Those two figures are themselves checked, by
-[`documented-counts.mjs`](documented-counts.mjs) under `npm run lint`. Five
+[`documented-counts.mjs`](documented-counts.mjs) under `npm run lint`. Six
 further counter-tests —
 [`documented-counts.test.mjs`](documented-counts.test.mjs),
 [`documented-version.test.mjs`](documented-version.test.mjs),
 [`install-commands.test.mjs`](install-commands.test.mjs),
-[`plugin-version.test.mjs`](plugin-version.test.mjs) and
-[`copied-templates.test.mjs`](copied-templates.test.mjs) — cover those
+[`plugin-version.test.mjs`](plugin-version.test.mjs),
+[`copied-templates.test.mjs`](copied-templates.test.mjs) and
+[`skill-pages.test.mjs`](skill-pages.test.mjs) — cover those
 checks in turn and are deliberately not given figures of their own. One more
 advertised number would be one more thing to keep true, and nothing would be
 checking it.

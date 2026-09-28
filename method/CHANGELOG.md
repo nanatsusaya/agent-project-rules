@@ -22,6 +22,25 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## Checks 0.5.4
+
+Against catalogue 0.7, which does not move. **Nothing here changes an adopter's
+result.** `check-method.mjs` is untouched.
+
+### Fixes with no effect on an adopter
+
+**Every skill is now held to its page.**
+[`checks/skill-pages.mjs`](../checks/skill-pages.mjs) fails when a skill in the
+plugin has no page in [`docs/skills/`](../docs/skills/README.md), when a page
+there describes no skill, when a page lacks one of the five sections or carries
+them out of order, and when the index does not link a page. The convention was
+written down when the pages were, and nothing held it: a new skill is the part a
+reviewer reads, and its page is the part nobody thinks to ask for.
+
+A page may add a section of its own between the five. Finding no skills or no
+pages at all is a finding rather than a pass, because two empty lists compare
+as equal and report nothing.
+
 ## 0.7
 
 Thirty-three rules in eleven clusters. One rule added and five reworded. None

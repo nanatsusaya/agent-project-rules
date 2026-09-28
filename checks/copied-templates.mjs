@@ -3,7 +3,7 @@
  * House-style check: do the templates GitHub reads still say what the handbook
  * says?
  *
- * House style rather than method, like the other five: it knows this
+ * House style rather than method, like the others: it knows this
  * repository's own paths, and an adopting project has no use for it — there the
  * handbook copy is *meant* to diverge, which is what agent-manual/README.md says
  * and what method.json is for.

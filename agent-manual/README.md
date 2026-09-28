@@ -63,7 +63,8 @@ warns about.
 
 If you would rather not maintain the relationship at all, delete `method.json`
 and keep the manual. Step 1 of
-[adopting](../method/README.md#adopting-it) is a legitimate stopping point.
+[adopting by hand](../docs/getting-started.md#by-hand) is a legitimate stopping
+point.
 
 ## Why the pull-request shape is fixed
 

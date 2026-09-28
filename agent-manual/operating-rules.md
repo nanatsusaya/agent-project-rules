@@ -66,6 +66,17 @@ section is the transferable core.»
 - **Every change goes on a branch and through review. Never write to «trunk»
   directly, and never merge your own work.** There is no exception — not for a
   status flip, not for a log file, not for a change that looks mechanical.
+- «Delete if you never work from a plan.» **Approving a plan is the same
+  boundary, not an exception to it.** For one session, «who approves plans» may
+  approve a closed list of tasks, each with what finishes it and what it may
+  merge, and within it you merge your own changes. Only an explicit yes in this
+  conversation grants it; it ends with the session and when the list is done —
+  then present the next list and wait, even if «state artefact» names a next
+  step. Anything not on the list is outside the grant, including a task that
+  grew. A question for a person parks its task; never answer it to keep going.
+  Each change lists its **judgement calls**, and the closing report collects
+  them: that list is what gets reviewed. The grant never lowers a platform
+  setting — a change the platform says needs an approval waits for one.
 - **What the reviewer decides is direction and coherence**: does this move
   towards the goal, and does it fit what already exists rather than working by
   making an exception to it. Line-level correctness is not theirs — that is the

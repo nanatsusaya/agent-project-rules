@@ -1,6 +1,6 @@
 # The rule catalogue
 
-Thirty-two rules in eleven clusters, identified as `<cluster><number>`. The
+Thirty-three rules in eleven clusters, identified as `<cluster><number>`. The
 identifier is permanent and never reused, even for a withdrawn rule: projects
 refer to rules by identifier, so renumbering would silently change what a
 project claims to follow.
@@ -29,6 +29,10 @@ Every change reaches the trunk through a review boundary that a human controls.
 The agent proposes, opens the change, and stops. There is no exception — not
 for a one-line status flip, not for a log file, not for a change the agent is
 certain is mechanical.
+
+A plan approved under [G4](#g4) is not an exception to this. It is the same
+boundary drawn around more than one change, by the same human, and nothing
+outside the plan passes it.
 
 **Why.** An exception carved out for "mechanical" changes is an exception whose
 boundary the agent decides, and an agent that can classify its own change as
@@ -121,6 +125,69 @@ we were writing for, and does it fit the canon or quietly contradict something
 already in it. Neither title has to exist as a job for the questions to be
 someone's — in a team they may sit with different people, and then the
 operating rules say which, for the same reason [G2](#g2) needs an addressee.
+
+<a id="g4"></a>
+### G4 — A plan can be approved instead of each change
+
+For one session, the person who holds the gate may approve a plan rather than
+each change, and within that plan the agent merges its own changes. Five
+conditions make this a gate rather than a way around one:
+
+- **The grant is explicit, and it ends with the session.** It is given in the
+  conversation that will carry the plan out. It is never inferred from silence,
+  from a document or from an earlier grant, and it does not carry over.
+- **The plan is a closed list, and it expires.** Each entry names a task, what
+  finishes it ([W1](#w1)), and what it may merge. When the list is done, so is
+  the grant: carrying on means presenting the next list and waiting. A step the
+  state artefact names as next is not on the list by being next.
+- **Anything not on the list is outside the grant.** A task that grows
+  something new on the way — a second concern, a new capability in a tool it
+  was only meant to use — has become a new entry, and a new entry needs a new
+  grant. So does anything that needs a decision recorded first ([D1](#d1),
+  [D4](#d4)).
+- **An open question parks its task.** A task that meets a question belonging
+  to a person ([G2](#g2)) stops, with the question written where it is held,
+  and the run takes the next entry. The agent never answers it to keep going.
+- **Judgement calls are listed, and the list is what the human reviews.** Each
+  change names the choices in it that a person could have made differently,
+  and the report at the end of the run collects them. That list, not the
+  diffs, is the object of acceptance.
+
+**Why.** [G1](#g1) is absolute because an exception whose boundary the agent
+draws is one the agent can widen. That reasoning is about who draws the
+boundary, not about how many changes sit inside it. A plan approved in advance
+leaves the boundary with the human, and [G3](#g3) already says what the
+approval is for: direction and coherence, which a plan answers for a whole list
+at once. Without this rule, work that was fully planned still waits a cycle per
+change, and stands still whenever nobody is there to answer.
+
+The rule fails in one direction, and quietly. When the list runs out and the
+agent carries on because the next step seems obvious, the agent is drawing the
+boundary again — exactly what G1 forbids — while from outside "the human
+approved the plan" still looks true. It has become "the human reads a summary
+afterwards". That is why the plan expires rather than extending, and why a
+task that grows is a new entry rather than a larger one.
+
+The second failure is subtler. A review asks whether a change does what it
+says; it does not ask whether the choice inside it was the right one. A run
+that merges without anyone seeing its judgement calls has decided things that
+nobody saw being decided, which is [G2](#g2) broken without a single question
+having been skipped. Listing them keeps the decisions with the human, and
+costs a reading of one list instead of a review per change.
+
+**Check:** `manual`. The grant changes no platform setting and never lowers
+one. Where the trunk requires an approving review, the platform refuses the
+agent's merge whatever was said in the conversation. Where it requires none —
+the setting G1's *Binding* recommends when one account authors and merges — the
+run's merges are held by instruction alone, as every merge there already is.
+
+**Binding.** *Solo:* the grant is the maintainer's explicit yes to the plan, in
+the session that runs it. *In a team:* the operating rules say who approves a
+plan, for the same reason [G2](#g2) needs an addressee, and the grant never
+stands in for an approving review the platform requires — a change that needs
+one waits for it, and the run takes the next entry. Either way, the plan and
+the closing report belong where [S3](#s3)'s state artefact can point to them,
+so that the next session can see where the grant ended.
 
 ---
 
@@ -538,6 +605,10 @@ bringing living documents current. Starting the *next piece of work* does not.
 Begin it only if it is genuinely decision-free; if it needs a judgement from
 [G2](#g2), is too large to start without agreeing its shape, or is ambiguous,
 stop and ask.
+
+Inside a plan approved under [G4](#g4), the next entry on the list is
+decision-free by construction: the decision was taken when the plan was
+approved. Nothing that is not on the list is.
 
 **Why.** Autonomy is not one setting. Actions that are cheap to reverse and
 actions that commit direction have very different costs when they are wrong,

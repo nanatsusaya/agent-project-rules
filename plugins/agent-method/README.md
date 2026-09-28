@@ -194,7 +194,7 @@ The desktop app has a plugin browser as well, and a cloud session takes an
 ## How updates reach you
 
 **This plugin carries an explicit version rather than a commit SHA.** The
-manifests currently declare `0.6.0`. A new version is one where that number
+manifests currently declare `0.7.0`. A new version is one where that number
 has changed, not every commit.
 
 **And it reaches you when you ask for it.** Auto-update is off by default for

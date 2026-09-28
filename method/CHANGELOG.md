@@ -102,8 +102,7 @@ rather than a failure.
 now pins `0.7`. `after-merge` no longer opens a change to bring documents
 current; it checks that the merged change did. `session-start` reports a
 missing wind-down, and `session-end` writes only what no change carried and
-always answers the method-log question. A procedure for running a plan is
-still to come.
+always answers the method-log question.
 
 **A sixth procedure, `interview`,** carries G2's rounds out: the decisions a
 piece of work needs before it starts, asked as a frontier of questions whose
@@ -122,6 +121,18 @@ already exists. `kickoff` is the first procedure only a person can start
 (`disable-model-invocation: true`): an agent that decided on its own to found a
 project would be choosing the project's direction, and its description no longer
 costs context on every turn.
+
+**An eighth, `autopilot`,** carries G4 out. It checks the start strictly —
+including that the tools the run needs are allowed in advance, because an
+unattended run stops at the first permission prompt — reads every open task,
+asks every question up front through `interview`, and presents a closed plan
+with a budget. After an explicit yes it works the list one change at a time,
+lists each change's judgement calls, parks what meets a question, and ends with
+a report that collects them. Keeping the run alive is optional and marked as
+untested in a real stall: a goal the session works towards, or a nudge where a
+goal is not available. A watch outside the session is named as what it is — a
+report that cannot tell waiting from hanging — and not as a safeguard. Only a
+person can start it.
 
 ## 0.6
 

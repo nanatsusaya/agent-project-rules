@@ -205,6 +205,7 @@ has a procedure. These are the ones in daily use.
 | `decision-record` | Write a decision down, and take it through its cycle from proposed to accepted. |
 | `adopt` | Introduce the method to a project, or review how well an existing one fits. |
 | `kickoff` | Start a project from a description: interview for every decision the foundation needs, then propose the foundation as one change. |
+| `autopilot` | Work through a plan approved in advance, under [G4](method/rules.md#g4): questions first, then the list, ending when it does. |
 | `interview` | Ask the decisions a piece of work needs before it starts, in rounds, each with a recommended answer. |
 
 The first three are the loop: one when you sit down, one every time a change

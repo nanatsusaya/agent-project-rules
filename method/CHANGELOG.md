@@ -24,8 +24,9 @@ mechanism.
 
 ## 0.7
 
-Thirty-three rules in eleven clusters. One rule added. None withdrawn, none
-renumbered — every identifier you already refer to still means what it meant.
+Thirty-three rules in eleven clusters. One rule added and three reworded. None
+withdrawn, none renumbered — every identifier you already refer to still means
+what it meant.
 
 ### New rule
 
@@ -58,7 +59,30 @@ is no exception, and G4 is not one: it is the same boundary around more than
 one change. S2 counts the next entry of an approved plan as decision-free, and
 nothing else.
 
-**What you have to do.** Nothing, unless you want to work from plans. If you
+**[S3](rules.md#s3) moves the state artefact's update into the work.** It used
+to be brought current at wind-down, and the seam after a merge brought the
+living documents current too — each time in a change of its own, which costs a
+review cycle and leaves the artefact wrong between the merge and the update.
+Now the change that closes a task updates it in the same merge, a change that
+does nothing but update it is avoided, and wind-down writes only what no
+change carried. A run under G4 writes its plan in before the first entry, so a
+run that stops shows where.
+
+**[S1](rules.md#s1) gains two duties at the ends of a session.** Bring-up
+compares the state artefact with the trunk and, where the last session ended
+without a wind-down, reports it and proposes the repair as the first change —
+it still writes nothing itself. Wind-down asks [M1](rules.md#m1)'s question
+every time and says the answer, but writes an entry only on a yes: the method
+log stays rare, and the question stops being skipped. **[S2](rules.md#s2)** no
+longer counts bringing documents current as housekeeping.
+
+**What you have to do.** Update your operating rules where they say the state
+artefact is brought current before a session ends: the manual's opening
+paragraph, *Definition of done*, the method-log bullet and *Session rituals*
+carry the new wording. If you copied the procedures rather than subscribing to
+the plugin, take the new `after-merge`, `session-start` and `session-end`.
+
+Beyond that, nothing, unless you want to work from plans. If you
 do, the manual's *Delivery* section has a bullet for it; name in your operating
 rules who approves a plan, and in a team leave your required reviews where
 they are. If you do not, drop G4 as an adaptation ([A2](rules.md#a2)) or delete
@@ -69,8 +93,11 @@ rather than a failure.
 ### Plugin
 
 **The plugin is `0.7.0`.** The example `method.json` that `adopt` works from
-now pins `0.7`. What the five procedures do is unchanged; a procedure for
-running a plan is still to come.
+now pins `0.7`. `after-merge` no longer opens a change to bring documents
+current; it checks that the merged change did. `session-start` reports a
+missing wind-down, and `session-end` writes only what no change carried and
+always answers the method-log question. A procedure for running a plan is
+still to come.
 
 ## 0.6
 

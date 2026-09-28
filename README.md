@@ -100,17 +100,17 @@ You can also skip the skills and copy the rules by hand — see
 
 | Skill | What it does |
 |---|---|
-| `session-start` | Reads where the project stands and tells you. Ends with a question, never with work. |
-| `after-merge` | After a change lands: tidies up, checks what changed, and starts the next task only if it needs no decision. |
-| `session-end` | Parks unfinished work visibly and leaves a clear next step for next time. |
-| `kickoff` | Turns a description of a new project into its first rules, decisions and tasks. |
-| `adopt` | Fits the rules to a project that already exists. |
-| `interview` | Asks the decisions a piece of work needs, in rounds, each with a recommended answer. |
-| `decision-record` | Writes a decision down and takes it from proposed to accepted. |
-| `autopilot` | Works through a plan you approved in advance, without asking per change. Stops when the plan is done. |
+| [`session-start`](docs/skills/session-start.md) | Reads where the project stands and tells you. Ends with a question, never with work. |
+| [`after-merge`](docs/skills/after-merge.md) | After a change lands: tidies up, checks what changed, and starts the next task only if it needs no decision. |
+| [`session-end`](docs/skills/session-end.md) | Parks unfinished work visibly and leaves a clear next step for next time. |
+| [`kickoff`](docs/skills/kickoff.md) | Turns a description of a new project into its first rules, decisions and tasks. |
+| [`adopt`](docs/skills/adopt.md) | Fits the rules to a project that already exists. |
+| [`interview`](docs/skills/interview.md) | Asks the decisions a piece of work needs, in rounds, each with a recommended answer. |
+| [`decision-record`](docs/skills/decision-record.md) | Writes a decision down and takes it from proposed to accepted. |
+| [`autopilot`](docs/skills/autopilot.md) | Works through a plan you approved in advance, without asking per change. Stops when the plan is done. |
 
-Each one is plain Markdown. Step by step:
-[`plugins/agent-method/skills/`](plugins/agent-method/skills/).
+Each is plain Markdown your agent reads. More on each, and how to rename them
+into your own language: [the skills](docs/skills/README.md).
 
 ## The rules
 

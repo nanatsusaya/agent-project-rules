@@ -34,7 +34,6 @@ every cost honestly, and says where the method is most likely wrong.
 No — see [what this is not](../method/rationale.md#what-this-is-not).
 
 **Can I rename the skills into my own language?**
-Yes, and it is encouraged: you type them many times a day. The plugin README
-has a
-[table](../plugins/agent-method/README.md#rename-them-into-your-own-language)
-with names in German, Spanish and Italian.
+Yes, and it is encouraged: you type them many times a day. There is a
+[table](skills/README.md#rename-them-into-your-own-language) with names in
+German, Spanish and Italian.

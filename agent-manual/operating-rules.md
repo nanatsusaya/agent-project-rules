@@ -74,6 +74,10 @@ section is the transferable core.»
 - **One concern per change.** Do not fold refactors, formatting churn or
   dependency bumps into unrelated work. A change too large to answer those two
   questions about is a change that gets waved through.
+- **A pull request takes the shape in «pull-request template»**: What, Why and
+  Verified always answered; Open questions and Follow-ups deleted when there
+  are none. The template carries the shape; every instruction about it is here,
+  because a description written from a file never opens the template.
 - «Commit and branch conventions: message format, branch prefixes.»
 - **Agent assistance is disclosed in the commit**, as an `Assisted-by:` trailer
   naming what assisted. A trailer survives a squash merge and cannot be edited
@@ -154,7 +158,15 @@ Agents write the tickets too; hold them to the same bar as the work.
   parent and to related decisions; any constraints.
 - **Done:** acceptance criteria met **and verified**; work and docs updated
   together; CI green; the change merged; the ticket closed from the change
-  description.
+  description — and its state **read after the merge**, not assumed from what
+  the description said.
+- **A closing keyword is read by a parser, not by a person.** Where the
+  platform closes tickets from text, the keyword is read wherever the platform
+  reads it — on GitHub, in commit messages as well as the description — and
+  the sentence around it is not read at all: *nothing here closes #12* closes
+  #12, and so does a quotation of it. Write the keyword once, where you mean
+  it; refer to any other ticket without one. A closed ticket looks exactly like
+  a finished one, so a wrong close surfaces only if someone checks.
 
 ## Session rituals
 

@@ -4,7 +4,8 @@ file GitHub reads. Everything from the first heading down is held to the
 handbook by checks/copied-templates.mjs — so edit the handbook, and let the
 check tell you this copy has fallen behind.
 
-One concern per change. The owner merges, never the author.
+How to fill it is in CLAUDE.md, not here: a description written from a file
+never opens this one.
 
 This repository adds no section of its own.
 -->
@@ -26,16 +27,8 @@ This repository adds no section of its own.
 
 ## Open questions
 
-<!-- Numbered O1..On, each with a recommended default. Delete if none.
-
-     Do not answer them yourself. The answer is a comment on this pull request,
-     naming the O-number, and this description is not touched to record it or
-     to point at it.
-
-     An answer edited into this description overwrites the question it answers.
-     It gets no permalink, notifies nobody, carries no timestamp except one
-     typed by hand, and races whoever else is editing. The durable consequence
-     goes where it belongs: the decision record, or the state artefact. -->
+<!-- Numbered O1..On, each with a recommended default. Delete if none. Where
+     an answer goes is in the operating rules. -->
 
 ## Follow-ups
 

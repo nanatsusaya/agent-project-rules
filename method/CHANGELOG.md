@@ -26,7 +26,8 @@ mechanism.
 
 Thirty-two rules in eleven clusters. None added, none withdrawn, none
 renumbered — every identifier you already refer to still means what it meant.
-One rule was reworded, and the manual's pull-request shape lost a line.
+One rule was reworded, and the manual moved its pull-request instructions out
+of the template and into the operating rules.
 
 ### Worth re-reading
 
@@ -52,10 +53,25 @@ has the reasoning.
 request** — in conversation, in a meeting: whoever next works on it posts it as
 a comment, quoting it and saying when and where it was given.
 
+**The pull-request template carries shape only.** Its instructions moved into
+the operating rules, where a session reads them; a template comment is read by
+somebody typing in a browser and by no agent that writes a description from a
+file.
+[`agent-manual/README.md`](../agent-manual/README.md#a-template-carries-shape-the-instructions-live-in-the-operating-rules)
+has the reasoning.
+
+**A closing keyword is read by a parser, and *Done* now reads the ticket's
+state after the merge.** The operating rules warn, beside the step that uses
+it, that the keyword is read in commit messages too and that a negation or a
+quotation closes the ticket just the same. Not a catalogue rule: it is one
+platform's behaviour.
+
 **What you have to do.** If your operating rules or your pull-request template
-were copied from the manual, drop the instruction to keep a
-`O1 — answered: … → <link>` line, and add the sentence about answers given
-elsewhere. Nothing in the check changes, and your `method.json` pin to `0.5`
+were copied from the manual: drop the instruction to keep a
+`O1 — answered: … → <link>` line; add the sentence about answers given
+elsewhere; move any instruction you keep in the template comment into your
+operating rules; and add the closing-keyword warning and the post-merge read to
+*Done*. Nothing in the check changes, and your `method.json` pin to `0.5`
 is reported as a difference rather than a failure.
 
 ### Plugin

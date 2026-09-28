@@ -24,7 +24,7 @@ mechanism.
 
 ## 0.7
 
-Thirty-three rules in eleven clusters. One rule added and four reworded. None
+Thirty-three rules in eleven clusters. One rule added and five reworded. None
 withdrawn, none renumbered — every identifier you already refer to still means
 what it meant.
 

@@ -48,4 +48,4 @@ states rules; everything else explains them.
 
 **Skill** — a written procedure your agent runs when you type its name, such as
 `/session-start`. This project ships eight; see
-[the skills](../README.md#the-skills).
+[the skills](skills/README.md).

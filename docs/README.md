@@ -13,6 +13,8 @@ detail, one topic per page.
 
 ## Use it
 
+- [The skills](skills/README.md) — one page for each of the eight, and how to
+  rename them.
 - [Getting started](getting-started.md) — with the skills or by hand, and how
   to back out.
 - [Checking that it still holds](checking.md) — the command that compares your

@@ -49,9 +49,10 @@ npx skills add nanatsusaya/agent-project-rules
 
 It finds the procedures through this repository's plugin manifests, so
 nothing here is laid out for its sake. `--list` shows what it would install
-without installing anything; run on 2026-09-28, it reported *Found 5 skills*
-and listed all five. An install into an agent other than Claude Code has not
-been tried here.
+without installing anything; run on 2026-09-29 with `skills` 1.7.0, it
+reported *Found 8 skills* and listed all eight, including the two that only a
+person can start. An install into an agent other than Claude Code has not been
+tried here.
 
 For Claude Code the skills land in `.claude/skills/`, or in `~/.claude/skills/`
 with `-g`. By default each agent's directory links to one canonical copy;

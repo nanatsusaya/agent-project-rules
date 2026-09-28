@@ -582,18 +582,26 @@ Starting, resuming and ending a session are written-down procedures that
 produce the same result every time. Three seams matter:
 
 - **Bring-up** reads the current state fresh and produces an orientation
-  briefing. It ends with a **question**, never an action.
+  briefing. It ends with a **question**, never an action. Where the state
+  artefact is behind the trunk — the last session ended without a wind-down —
+  it says so, trusts the trunk over the artefact for what is newer, and
+  proposes bringing the artefact current as the session's first change.
 - **The seam after a merged change** keeps the session's accumulated context
   and re-verifies the *external* state: the trunk, open changes, the task's
   current scope. Context is an asset; the shared world is what moved while you
   worked.
 - **Wind-down** leaves the repository at an honest stopping point: everything
-  unfinished is parked visibly and handed off.
+  unfinished is parked visibly and handed off. It asks [M1](#m1)'s question of
+  the session every time, writes an entry only when the answer is yes, and says
+  which it was.
 
 **Why.** Improvised session boundaries fail in a consistent way: something is
 skipped, and the skip is unnoticed because there was no list to skip from. The
 bring-up rule exists because an agent that opens a session by starting work has
-chosen the session's direction on the human's behalf.
+chosen the session's direction on the human's behalf — which is also why it
+reports a missing wind-down rather than repairing it. Asking the method-log
+question every time is what makes it get asked; writing only on a yes is what
+keeps the log from becoming the progress log M1 excludes.
 
 **Check:** `manual`
 
@@ -601,7 +609,7 @@ chosen the session's direction on the human's behalf.
 ### S2 — Gated autonomy
 
 Within a session the housekeeping runs autonomously — syncing, tidying,
-bringing living documents current. Starting the *next piece of work* does not.
+re-verifying what moved. Starting the *next piece of work* does not.
 Begin it only if it is genuinely decision-free; if it needs a judgement from
 [G2](#g2), is too large to start without agreeing its shape, or is ambiguous,
 stop and ask.
@@ -620,8 +628,14 @@ everything and one that asks about nothing.
 <a id="s3"></a>
 ### S3 — Keep a state artefact
 
-One artefact answers *where do we stand*. Wind-down brings it current; bring-up
-reads it before anything else.
+One artefact answers *where do we stand*. Bring-up reads it before anything
+else. It is brought current **by the change that moves the position**: the
+change that closes a task updates it too, so the position becomes true in the
+same merge as the work. A change that does nothing but update it is avoided;
+wind-down brings it current only for what no such change carried — parked work,
+changes awaiting review, a next step that moved. Under a plan approved by
+[G4](#g4), the plan is written into it before the first entry starts, and each
+change that closes an entry marks it.
 
 **Why.** Four rules already read it and none of them requires it to exist.
 [D3](#d3) publishes the decided-versus-built gap beside it, [D4](#d4) makes it
@@ -630,6 +644,14 @@ questions an artefact must answer, and [S1](#s1)'s bring-up reads it fresh. A
 session arriving at a repository without one reconstructs the position from
 commits and open branches — and a reconstruction is exactly the plausible guess
 the premise says an agent will make without flagging that it guessed.
+
+Updated by changes of its own, it costs a review cycle each time and is still
+wrong between the merge and the update; a session that stops in that window
+hands the next one a position the trunk has already left. Carried by the change
+that moves the position, it costs nothing extra, and a session that stops
+without warning leaves it behind by at most the task in hand. Outside
+wind-down, the plan is the one thing worth a change of its own, because it is
+what the next session needs if a run stops before its first merge.
 
 **Binding.** Usually one file — `STATUS.md`, or a section of the
 operating-rules artefact where a separate file would be ceremony. What matters

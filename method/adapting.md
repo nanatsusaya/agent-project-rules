@@ -107,6 +107,10 @@ Several rules change shape when more than one person is involved.
   second authority: two people write the same thing in two places in the same
   week, and neither sees the other. This is where converting the rule into a
   check pays back fastest.
+- [S3](rules.md#s3)'s state artefact is where parallel changes collide. Each
+  change that closes a task updates it, so two open at once conflict there.
+  The second to merge resolves the conflict against what the first made true;
+  that cost is what keeping the artefact current in the same merge buys.
 
 ### Solo, early, no audience yet
 

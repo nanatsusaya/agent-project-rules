@@ -15,8 +15,9 @@ conditional belongs in a procedure the agent loads when it needs it.
 
 This file holds the **stable operating rules**, not the current state. Where we
 stand is in «state artefact»; what was decided is in «decisions artefact».
-«state artefact» is always the same place, is brought current before a session
-ends, and names a **single** clearest next step — not everything outstanding.
+«state artefact» is always the same place, is brought current by the change
+that closes a task — never by a change of its own — and names a **single**
+clearest next step, not everything outstanding.
 
 ## What this is
 
@@ -96,7 +97,8 @@ section is the transferable core.»
   a record.
 - **Definition of done:** «the local chain» is green; anything with observable
   behaviour has been **exercised**, not merely built; docs changed in the same
-  commit; the change's own CI is green. **Report outcomes faithfully**,
+  commit; a change that closes a task brings «state artefact» current in the
+  same change; the change's own CI is green. **Report outcomes faithfully**,
   including failures and skipped steps.
 - **Hand work back only when you believe it is correct, complete and safe.**
   Below that bar, keep working or name the specific uncertainty — what exactly
@@ -158,7 +160,8 @@ guess who to ask will guess the nearest person or nobody.»
 - «method-log artefact» records *why the way we work looks like this*:
   corrections and their reasoning, workflow experiments, mistakes that produced
   a rule. Write an entry only for a genuinely methodological moment. The test:
-  would an agent with no memory of that session decide worse without it?
+  would an agent with no memory of that session decide worse without it? Ask it
+  at every wind-down, and say the answer even when it is no.
 
 ## Tickets
 
@@ -182,10 +185,12 @@ Agents write the tickets too; hold them to the same bar as the work.
 ## Session rituals
 
 «If you use them, name them and say what each is for. The invariants:
-bring-up reads «state artefact» before anything else and ends with a question,
-never an action · the seam after a merged change keeps your context and
-re-verifies the *external* state · wind-down brings «state artefact» current and
-parks unfinished work visibly rather than leaving it dangling.»
+bring-up reads «state artefact» before anything else, reports it if it is
+behind the trunk, and ends with a question, never an action · the seam after a
+merged change keeps your context and re-verifies the *external* state ·
+wind-down parks unfinished work visibly rather than leaving it dangling, brings
+«state artefact» current for what no change carried, and asks the method-log
+question.»
 
 ## Guardrails
 

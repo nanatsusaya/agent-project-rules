@@ -2,14 +2,14 @@
 name: session-end
 description: >-
   Use at the end of a working session to wind down cleanly: tidy the branch state, finish or safely
-  park in-flight work at an honest stopping point, bring the living documents current, run any
-  maintenance that has come due, then give a handoff summary. This is a wind-down, NOT a trigger to
+  park in-flight work at an honest stopping point, bring the state artefact current for what no change
+  carried, ask whether the method log needs an entry, run any maintenance that has come due, then give a handoff summary. This is a wind-down, NOT a trigger to
   start new work. The counterpart to session-start.
 ---
 
 # Session end — wind-down
 
-*Carries out rules S1, S3, W1 and H1. The
+*Carries out rules S1, S3, M1, W1 and H1. The
 [catalogue](https://github.com/nanatsusaya/agent-project-rules/blob/main/method/rules.md)
 is the authority; this file is only the procedure.*
 
@@ -54,16 +54,20 @@ Apply the project's definition of done before calling anything done:
   exactly is unverified, and what would settle it — rather than declaring it
   finished.
 
-## 3. Bring the living documents current
+## 3. The state artefact and the method log
 
-- **State artefact:** refresh the date, the *where we stand* section and the
-  *next step* if the session changed them. Make what is open honest: changes
-  awaiting review, parked work, the single clearest next step. This is a normal
-  change through review.
-- **Method log:** only for a genuinely methodological moment — a correction and
-  its reasoning, a workflow experiment and its outcome, a mistake worth not
-  repeating. The test: would an agent with no memory of this session decide
-  worse without the entry? Routine execution is what the commit history is for.
+- **State artefact:** each change that closed a task this session should
+  already have brought it current. What is left is what no change carried:
+  parked work, changes awaiting review, a next step that moved. If any of it is
+  missing, bring the artefact current — refresh the date, the *where we stand*
+  section and the single clearest next step — in one change through review. If
+  the last closing change left it true, write nothing.
+- **Method log — ask every time, write only on a yes.** The question: would an
+  agent with no memory of this session decide worse without an entry? Yes for a
+  correction and its reasoning, a workflow experiment and its outcome, a
+  mistake worth not repeating. No for routine execution — that is what the
+  commit history is for. An entry goes into the same change as the state
+  artefact, or a change of its own if the artefact needed nothing.
 - **Memory**, if your tooling has one: save durable facts worth carrying
   forward. Not what the repository already records, and not what mattered only
   to this conversation.
@@ -78,6 +82,7 @@ a task that does not happen.
 ## 5. Handoff and close
 
 Give a concise recap: what was accomplished, what is open (changes awaiting
-review, parked work), and the single clearest next step for the next session.
+review, parked work), the single clearest next step for the next session, and
+the answer from step 3 — the method-log entry, or *nothing for the method log*.
 
 Then stop. Begin nothing new, and leave the session at a clean stopping point.

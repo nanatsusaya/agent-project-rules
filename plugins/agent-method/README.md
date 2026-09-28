@@ -9,7 +9,7 @@ which is where the seam between sessions actually bites.
 |---|---|
 | `/agent-method:session-start` | Session bring-up. Orients from the project's living documents and **ends with a question, never an action**. |
 | `/agent-method:after-merge` | The seam after a merged change. Keep your context, re-verify the world, start the next task only if it is decision-free. |
-| `/agent-method:session-end` | Session wind-down. Tidy the branches, finish or park work honestly, bring the living documents current. |
+| `/agent-method:session-end` | Session wind-down. Tidy the branches, finish or park work honestly, bring the state artefact current for what no change carried, ask the method-log question. |
 | `/agent-method:decision-record` | Writing or reworking a decision record, and the cycle it goes through. |
 | `/agent-method:adopt` | Introducing the method into a project, or reviewing how well an existing one fits. |
 

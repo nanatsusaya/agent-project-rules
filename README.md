@@ -200,8 +200,8 @@ has a procedure. These are the ones in daily use.
 | Procedure | When you run it |
 |---|---|
 | `session-start` | Bring-up. Orients from the project's own documents, and ends with a question rather than an action. |
-| `after-merge` | The seam after a change lands. Re-verify the world, bring the documents current, start the next task only if it needs no decision. |
-| `session-end` | Wind-down. Tidy the branches, park unfinished work at an honest stopping point, bring the documents current. |
+| `after-merge` | The seam after a change lands. Re-verify the world, check the state artefact says what is now true, start the next task only if it needs no decision. |
+| `session-end` | Wind-down. Tidy the branches, park unfinished work at an honest stopping point, bring the state artefact current for what no change carried, ask the method-log question. |
 | `decision-record` | Write a decision down, and take it through its cycle from proposed to accepted. |
 | `adopt` | Introduce the method to a project, or review how well an existing one fits. |
 

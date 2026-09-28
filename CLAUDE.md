@@ -91,6 +91,29 @@ check, point it at a project that has a `method.json`:
 - Comments in the check explain **why**, not what — particularly why a check
   exempts what it exempts, since an unexplained exemption reads as an oversight
   and gets removed.
+- **Two registers, chosen by who reads the page.**
+  [`README.md`](README.md) and [`docs/`](docs/README.md) are for a person
+  deciding whether and how to use this: short sentences, everyday words, one
+  idea per paragraph, and the problem before the principle. `method/`,
+  `agent-manual/` and the skills keep their denser register, because an agent
+  reads them before acting and precision there outweighs ease.
+- **In `README.md` and `docs/`, a term is explained before it is used.** A word
+  used in a specific sense has one entry in
+  [`docs/glossary.md`](docs/glossary.md), added in the same change as its
+  first use, and a page links to it the first time the word appears. Say
+  *file* where the catalogue says *artefact* — *state file*, *rules file*; the
+  catalogue and `method.json` keep their identifiers, because adopters use
+  them.
+- **`docs/` explains and links; it never states a rule.** A page that needs a
+  rule links to it in `method/rules.md`. A skill's page describes what the
+  skill achieves, not its steps: the steps are its `SKILL.md`, and a second
+  telling of them would drift.
+- **The README stays short** — around 150 lines. What does not fit belongs on a
+  `docs/` page the README links to.
+- **Every skill has a page in `docs/skills/`** with the same five sections —
+  *What it does*, *When to use it*, *What it will not do*, *It's working if*,
+  *Where it fits* — and a new or changed skill changes its page in the same
+  change.
 
 ## Working with the owner
 

@@ -57,6 +57,9 @@ pull request is a different project.
 - **One concern per pull request.**
 - **British spelling** throughout, and **prose wraps at 80 columns**. Both are
   checked by `npm run lint`.
+- **`README.md` and `docs/` are written plainly**, for someone new to all of
+  this. What that means is under *Writing conventions* in
+  [`CLAUDE.md`](../CLAUDE.md#writing-conventions).
 - **No project names.** Every rule stands on its own reasoning, and evidence
   takes the form of the failure a rule prevents, never a case study — yours
   included. This is not modesty; a rule justified by an anecdote is a rule

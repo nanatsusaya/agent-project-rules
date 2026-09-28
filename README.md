@@ -216,9 +216,24 @@ rename them into your own language.
 
 ## Installing them
 
-Optional convenience. The procedures are also packaged as a Claude Code plugin,
-which saves you copying five files by hand. Three steps, from inside Claude
-Code:
+Optional convenience, and there are two ways in that are not interchangeable:
+
+- **Subscribe** — the Claude Code plugin. A managed, read-only copy that
+  updates as one unit when its version changes.
+- **Own the files** — the `skills` CLI. It writes the five procedures into your
+  own directories, as files you can edit and rename.
+
+Pick one. Installing both leaves every skill there twice, once under each name.
+
+**Owning the files** is one command, run in your project:
+
+```bash
+npx skills add nanatsusaya/agent-project-rules
+```
+
+The skills are then `/session-start` and so on, without a prefix.
+
+**Subscribing** is three steps, from inside Claude Code:
 
 **1. Add this repository as a marketplace.** Nothing is installed yet; this only
 makes the catalogue visible.
@@ -240,12 +255,18 @@ everywhere, this repository for everyone, or this repository for you alone.
 /reload-plugins
 ```
 
-The skills are then `/agent-method:session-start` and so on.
+The skills are then `/agent-method:session-start` and so on. From Claude Code
+v2.1.275, the first two steps are one command:
+
+```
+/plugin install agent-method --marketplace nanatsusaya/agent-project-rules
+```
 
 Two of those steps report something that looks like a failure and is not, and
 `/plugin` does not exist in every environment.
-[`plugins/agent-method/`](plugins/agent-method/README.md) covers both, and how
-to skip the plugin entirely.
+[`plugins/agent-method/`](plugins/agent-method/README.md) covers both, where
+each route's claims come from, how updates arrive, and how to copy the files by
+hand with no installer at all.
 
 ## What it costs
 
@@ -296,7 +317,9 @@ The plugin is convenience, not a dependency.
 
 **Does this only work with Claude Code?**
 The catalogue names no tool and no stack. The plugin targets one runtime
-because that is what the author uses; the `method.json` roles exist so the
+because that is what the author uses, but the procedures are plain Markdown:
+the `skills` CLI installs them for Codex, Cursor and dozens of other agents as
+well. None of those has been tried here. The `method.json` roles exist so the
 check never needs to know what is reading the repository.
 
 **Thirty-three rules sounds like a lot.**

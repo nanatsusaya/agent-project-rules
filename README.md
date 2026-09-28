@@ -204,6 +204,7 @@ has a procedure. These are the ones in daily use.
 | `session-end` | Wind-down. Tidy the branches, park unfinished work at an honest stopping point, bring the state artefact current for what no change carried, ask the method-log question. |
 | `decision-record` | Write a decision down, and take it through its cycle from proposed to accepted. |
 | `adopt` | Introduce the method to a project, or review how well an existing one fits. |
+| `kickoff` | Start a project from a description: interview for every decision the foundation needs, then propose the foundation as one change. |
 | `interview` | Ask the decisions a piece of work needs before it starts, in rounds, each with a recommended answer. |
 
 The first three are the loop: one when you sit down, one every time a change

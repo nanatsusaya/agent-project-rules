@@ -1,10 +1,11 @@
 # agent-method
 
-Six procedures for
+Seven procedures for
 [agent-project-rules](https://github.com/nanatsusaya/agent-project-rules),
 packaged as a Claude Code plugin. Most cover the moments a session turns over,
-which is where the seam between sessions actually bites; one asks the decisions
-a piece of work needs before it starts.
+which is where the seam between sessions actually bites; one starts a project
+from a description, and one asks the decisions a piece of work needs before it
+starts.
 
 | Skill | When |
 |---|---|
@@ -13,6 +14,7 @@ a piece of work needs before it starts.
 | `/agent-method:session-end` | Session wind-down. Tidy the branches, finish or park work honestly, bring the state artefact current for what no change carried, ask the method-log question. |
 | `/agent-method:decision-record` | Writing or reworking a decision record, and the cycle it goes through. |
 | `/agent-method:adopt` | Introducing the method into a project, or reviewing how well an existing one fits. |
+| `/agent-method:kickoff` | Starting a project from a description: an interview for every decision the foundation needs, then the foundation as one change for review. Only you start it; the agent never does on its own. |
 | `/agent-method:interview` | The decisions a piece of work needs before it starts, asked in rounds. Other procedures call it; you can run it on its own. |
 
 ## What the skills assume
@@ -55,9 +57,10 @@ day:
 | `session-end` | `feierabend` | `hasta-luego` | `stacco` |
 | `decision-record` | `adr` | `adr` | `adr` |
 | `adopt` | `passtdas` | `cuadra` | `torna` |
+| `kickoff` | `dann-starten-wir-mal` | `arrancamos` | `partiamo` |
 | `interview` | `interview` | `interview` | `interview` |
 
-All six, because a table covering some of them reads as though the others were
+All seven, because a table covering some of them reads as though the others were
 meant to keep their English names. Two rows are where the advice above does
 not apply. `adr` is already what the thing is called out loud in every one of
 these languages, and inventing a colloquialism for a term people already say

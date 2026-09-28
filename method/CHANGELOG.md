@@ -113,6 +113,16 @@ nothing is left to ask and the person confirms, and it never acts on what was
 agreed. Other procedures call it by name, which is why the rename table keeps
 it as `interview` in every language.
 
+**A seventh, `kickoff`,** starts a project from a description: it settles what
+would make the project a failure and which kind of project it is, runs the
+interview for everything else, sorts each answer by [D1](rules.md#d1)'s test
+into a decision record, a working convention or a task, and proposes the whole
+foundation as one change. `adopt` stays the procedure for a project that
+already exists. `kickoff` is the first procedure only a person can start
+(`disable-model-invocation: true`): an agent that decided on its own to found a
+project would be choosing the project's direction, and its description no longer
+costs context on every turn.
+
 ## 0.6
 
 Thirty-two rules in eleven clusters. None added, none withdrawn, none

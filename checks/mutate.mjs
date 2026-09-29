@@ -151,6 +151,22 @@ const MUTATIONS = [
     to: 'if (false) {',
   },
   {
+    label: 'a binding is kept as written, not as the path it resolves to',
+    file: 'checks/check-method.mjs',
+    from: "bound[role] = relative(project, p).split(sep).join('/');",
+    to: 'bound[role] = value;',
+  },
+  {
+    label: 'a backslash in a binding is not read as a separator',
+    file: 'checks/check-method.mjs',
+    from: "const p = resolve(project, value.replace(/\\\\/g, '/'));",
+    to: 'const p = resolve(project, value);',
+    // On Windows `resolve` reads a backslash as a separator by itself, so the
+    // mutated line behaves exactly like the original and no case can tell them
+    // apart there. Everywhere else it names a file that does not exist.
+    skipOn: { win32: 'resolve already reads a backslash as a separator here' },
+  },
+  {
     label: 'a single-document role bound to a directory is accepted',
     file: 'checks/check-method.mjs',
     from: "if (ROLE_SHAPES[role] === 'file' && isDirectory(p)) {",
@@ -859,9 +875,17 @@ for (let i = 0; i < argv.length; i++) {
   }
 }
 
-const selected = only
+const chosen = only
   ? MUTATIONS.filter((m) => m.label.includes(only) || m.file.includes(only))
   : MUTATIONS;
+
+// A mutation some platform cannot distinguish from the original is skipped
+// there, by name and with its reason, rather than recorded as a survivor. A
+// survivor would teach whoever runs this locally to ignore the result; a
+// silent skip would hide that this platform holds less. CI runs on Linux,
+// where every mutation is run.
+const skipped = chosen.filter((m) => m.skipOn?.[process.platform]);
+const selected = chosen.filter((m) => !m.skipOn?.[process.platform]);
 
 const bar = '─'.repeat(72);
 console.log(bar);
@@ -883,7 +907,7 @@ cpSync(join(ROOT, 'method'), join(work, 'method'), { recursive: true });
 
 /** The pristine text of every file a mutation touches, read once. */
 const pristine = new Map();
-for (const m of selected) {
+for (const m of chosen) {
   if (!pristine.has(m.file)) {
     pristine.set(m.file, readFileSync(join(work, m.file), 'utf8'));
   }
@@ -893,7 +917,7 @@ for (const m of selected) {
 // report about something nobody chose. Checked before anything is run, so the
 // harness cannot half-finish.
 const malformed = [];
-for (const m of selected) {
+for (const m of chosen) {
   const text = pristine.get(m.file);
   const count = text.split(m.from).length - 1;
   if (count !== 1) {
@@ -942,6 +966,9 @@ const unexplained = survivors.filter((m) => !KNOWN_SURVIVORS.has(m.label));
 for (const m of survivors) {
   const why = KNOWN_SURVIVORS.get(m.label);
   if (why) console.log(`\n  known survivor · ${m.label}\n      ${why}`);
+}
+for (const m of skipped) {
+  console.log(`\n  not run on ${process.platform} · ${m.label}\n      ${m.skipOn[process.platform]}`);
 }
 
 console.log(`\n${bar}`);

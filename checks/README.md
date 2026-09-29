@@ -448,7 +448,10 @@ score is a number that goes stale without failing, which is the defect this
 repository has already met twice. Instead **every** mutation in the list has to
 be caught, and a survivor exits 1. A mutation nothing can catch belongs in
 `KNOWN_SURVIVORS` with the reason, where it reads as a decision rather than an
-oversight; the map is empty and meant to stay that way.
+oversight; the map is empty and meant to stay that way. A mutation one
+platform cannot tell apart from the original names that platform in `skipOn`,
+with the reason, and is reported as not run there rather than as a survivor.
+CI runs the harness on Linux, where nothing is skipped.
 
 Five mutations survived the first run, and each one named a case that was
 weaker than it looked. Two asserted a verdict that the mutant still produced by

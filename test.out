@@ -1,0 +1,331 @@
+
+> agent-project-rules@0.5.4 test
+> node checks/check-method.test.mjs && node checks/line-width.test.mjs && node checks/install-commands.test.mjs && node checks/plugin-version.test.mjs && node checks/documented-version.test.mjs && node checks/documented-counts.test.mjs && node checks/copied-templates.test.mjs && node checks/skill-pages.test.mjs
+
+ok    a complete, coherent project passes
+ok    a project with no method.json fails
+ok    unparseable method.json fails
+ok    a method.json that parses as null fails
+ok    a method.json that parses as false fails
+ok    a method.json that parses as 0 fails
+ok    a method.json that parses as "" fails
+ok    a method.json that parses as 5 fails
+ok    a method.json that parses as "x" fails
+ok    a method.json that parses as [] fails
+ok    a primitive declaration is reported, not thrown
+ok    a method.json with a byte-order mark still parses
+ok    the pre-0.5 method name fails
+ok    a bound artefact that does not exist fails
+ok    an invented role fails
+ok    an artefact bound outside the project root fails
+ok    a deeply nested artefact inside the project passes
+ok    an artefact bound to an absolute path fails
+ok    a single-document role bound to a directory fails
+ok    the decisions role bound to a single file passes
+ok    a file-bound decisions role names the rule that went unchecked
+ok    a bound artefact with no content fails
+ok    the finding says which role is empty and what to do about it
+ok    a one-byte artefact with content passes
+ok    a directory-bound role is not size-tested
+ok    a project declaring no external authorities passes
+ok    declared authorities pass, and null is a legitimate value
+ok    an invented authority fails
+ok    an empty authority fails
+ok    authorities given as an array fails
+ok    an authority left as a template placeholder fails
+ok    a declared authority is named where the check admits its blind spot
+ok    with no authority declared the blind-spot line offers no destination
+ok    an adaptation naming a rule that does not exist fails
+ok    an adaptation with a throwaway reason fails
+ok    an adaptation with no decided date fails
+ok    a deferred rule with no trigger fails
+ok    a deferred rule with a named trigger passes
+ok    the same rule adapted twice fails
+ok    the template placeholder adaptation fails
+ok    the placeholder adaptation is named as a template left unread
+ok    an unknown change kind fails and does not adapt the rule
+ok    a link to a file that does not exist fails
+ok    a link to an anchor that does not exist fails
+ok    a link to an explicit anchor that exists passes
+ok    a dead link inside a fenced example is not a finding
+ok    a link to a heading with non-ASCII letters passes
+ok    a link to a heading in a non-Latin script passes
+ok    an em-dash heading slug that keeps the dash passes
+ok    an em-dash heading slug that drops the dash also passes
+ok    a link to a heading that really is absent still fails
+ok    a link with any URI scheme is not a relative path
+ok    a percent-encoded target that exists passes
+ok    a percent-encoded target that does not exist still fails
+ok    an angle-bracketed target that exists passes
+ok    an angle-bracketed target that does not exist still fails
+ok    a link carrying a title passes when its target exists
+ok    a link carrying a title fails when its target does not
+ok    a reference definition pointing nowhere fails
+ok    a reference definition that resolves passes
+ok    a footnote definition is not read as a path
+ok    a link to a heading that is itself a link passes
+ok    a slug with a leading hyphen from stripped punctuation passes
+ok    wiki-style links are not read as broken links
+ok    a run that read no references says so instead of reporting success
+ok    the number of references read is reported
+ok    an adapted C5 stops the link scan
+ok    a narrowed rule keeps its check running
+ok    a replaced rule stops its check
+ok    a deferred rule stops its check
+ok    a check switched off by the declaration is named even under --quiet
+ok    a narrowed rule is not listed among the checks that did not run
+ok    a decision missing from the index fails
+ok    a status that disagrees with the index fails
+ok    an unbound decisions role with the owning rule adapted passes
+ok    an unbound role explained by an unrelated adaptation fails
+ok    an unbound "operating-rules" is accounted for by C3
+ok    an unbound "decisions" is accounted for by D1
+ok    an unbound "state" is accounted for by S3
+ok    an unbound "method-log" is accounted for by M1
+ok    an unbound "state" explained by D3 rather than S3 fails
+ok    the accounting finding for an unbound "state" names S3
+ok    a Nygard-format status matching the index passes
+ok    a Nygard-format status disagreeing with the index fails
+ok    a record with no readable status is named in the report
+ok    two decision files sharing a number fails
+ok    the index claiming one decision twice fails
+ok    a row with an unrecognised status fails
+ok    the finding names the invented status rather than a missing row
+ok    an index with no recognised status anywhere fails
+ok    an index named after its directory is found
+ok    and the report names the document it read, and why
+ok    the only document carrying a status table is read as the index
+ok    a guessed index is announced rather than assumed
+ok    two documents that both look like an index fails
+ok    the finding names both candidates
+ok    no index under any route still fails
+ok    the finding says it looked by file name, so "no index" cannot be read as "wrong name"
+ok    README.md is still the index when another document carries a table
+ok    an index row whose decision file is missing fails
+ok    a Planned row with no file yet passes
+ok    a decision under a four-digit directory is read from its file name
+ok    a document still asserting a withdrawn rule fails
+ok    the same wording quoted in a blockquote passes
+ok    the same wording inside a fenced example passes
+ok    a withdrawn phrase split across a line break still fails
+ok    the same split phrase quoted in a blockquote passes
+ok    a withdrawn pattern with a nested quantifier is refused
+ok    a quantified group with no inner repetition still works
+ok    a group repeating an exactly counted atom is accepted
+ok    escaped parentheses are literal, not a nested group
+ok    American spelling under a British regime fails
+ok    an -ize ending under a British regime fails
+ok    an -ize word that is correct everywhere passes
+ok    American spelling inside code spans is not a finding
+ok    American spelling inside a link target is not a finding
+ok    American spelling under an American regime passes
+ok    an adapted L1 stops the spelling scan
+ok    inflections of always-correct -ize words pass
+ok    -izer and -izational endings are caught
+ok    a declared word exemption passes
+ok    the exempt words are named in the report
+ok    the same words without an exemption still fail
+ok    an exemption covers only the words it names
+ok    "language.allow" given as a string fails
+ok    "language" given as a string fails
+ok    "language" given as an array fails
+ok    the operating-rules artefact is scanned like any other
+ok    a forbidden spelling named in a code span or blockquote passes
+ok    a narrowed manual rule stays in the honesty figure
+ok    a dropped manual rule leaves it
+ok    an incomplete adaptation does not switch its check off
+ok    the listing marks an incomplete adaptation as not having taken effect
+ok    a bound artefact still carrying a placeholder fails
+ok    a placeholder in an unbound file is not a finding
+ok    "ignore" given as a string fails
+ok    an ignored path is not scanned
+ok    a version behind the catalogue is reported, not failed
+ok    the note names both versions
+ok    a declaration level with the catalogue produces no version note
+ok    a run that read nothing says so rather than reporting clean
+ok    a broken link in a skipped directory is still not a finding
+ok    the skipped directories are named, with a count
+ok    a copy of the method inside the project is not scanned
+ok    the report names the copy it skipped
+ok    the copy is recognised under any directory name
+ok    a directory with only one marker is scanned as the project
+ok    a control character in a declaration value is shown, not obeyed
+ok    non-ASCII in a declaration value survives unchanged
+ok    two project paths are refused
+ok    an option that swallowed its value is refused
+ok    an unknown option is refused
+ok    --lint passes on a project with no method.json
+ok    the same project without --lint fails on the declaration
+ok    --lint still catches a dead link
+ok    --lint with --spelling catches an Americanism
+ok    --lint without --spelling leaves spelling alone
+ok    --lint on an adopted project does not claim the declaration went unchecked
+ok    --lint without a method.json still names the checks that had nothing to run against
+ok    --lint on an adopted project ends on the declaration, not on the documents
+ok    --lint without a method.json ends on the documents
+ok    --lint does not suppress a declaration finding on an adopted project
+ok    an empty catalogue is refused rather than passed
+ok    a duplicated rule identifier is refused rather than silently overwritten
+ok    the same identifier inside a fenced example is not a duplicate
+ok    a withdrawal entry missing its pattern is refused rather than compiled
+
+166 cases, 0 failed
+ok    a prose line over the limit fails
+ok    a line under the limit passes
+ok    a line exactly at the limit passes
+ok    a line one column over fails
+ok    a single token longer than the limit passes
+ok    a long table row passes
+ok    a long line inside a fence passes
+ok    a long line in YAML frontmatter passes
+ok    a line made long by one unbreakable URL passes
+ok    a long line that merely contains a short URL still fails
+ok    a `---` below the top is a rule, not frontmatter, so what follows is checked
+ok    text after a closed fence is checked again
+ok    an indented list item over the limit fails
+
+13 cases, 0 failed
+ok    the same command in three documents, cloning outside, passes
+ok    a clone with no destination fails
+ok    a clone to a destination inside the project fails
+ok    two documents stating different clone commands fail
+ok    a run line left pointing at the old path fails
+ok    a block running the check from inside the method repository is not compared
+ok    the command named in prose rather than in a fence is not a claim about it
+ok    documents with no clone command at all fail
+ok    fenced blocks are read with their line numbers
+
+9 cases, 0 failed
+ok    a bumped version with nothing changed passes
+ok    a bumped version with procedures changed passes
+ok    a changed procedure with an unchanged version fails
+ok    the finding names the files that changed
+ok    a README under plugins/ changed with no version bump passes
+ok    a README beside a real change does not excuse the real change
+ok    the manifests disagreeing fails
+ok    a missing plugin version fails
+ok    a version present in only the marketplace entry fails twice
+ok    a two-part version fails
+ok    a whitespace version fails
+ok    a three-part version with large parts passes
+ok    with no release tag the check says it decided nothing
+ok    a release that declared no version is named as uncomparable
+ok    that arrangement is a note and not a finding
+ok    an untouched plugin is reported as untouched
+ok    shipsToUsers decides each path correctly
+ok    a README stating the manifest version produces no finding
+ok    a stale README fails, and says both numbers
+ok    a README ahead of the manifests fails too
+ok    a missing plugin version is a finding rather than a match
+ok    a README that states no version at all fails
+ok    the historical failure this check commemorates is not reported
+ok    a claim inside a fence neither fires nor counts as the statement
+ok    a CRLF document reads the same as an LF one
+ok    the line reported is the line the claim is on
+
+26 cases, 0 failed
+ok    a fenced declaration is read
+ok    a bare json declaration is read
+ok    a version matching the catalogue produces no finding
+ok    a stale version fails, and says both numbers
+ok    a version ahead of the catalogue fails too
+ok    an empty version is a finding rather than a match
+ok    every stale copy is named, not just the first
+ok    a declaration that states no version at all fails
+ok    a repository with no declaration anywhere fails
+ok    package.json is not a method declaration
+ok    a plugin manifest is not a method declaration
+ok    a fenced block with a version but no method name is ignored
+ok    a version discussed in prose is not read as a declaration
+ok    whitespace around the colon does not hide a declaration
+ok    a CRLF document reads the same as an LF one
+ok    a tilde fence is a fence
+ok    two fenced blocks are separate blocks
+ok    an unclosed fence still yields its block
+ok    a document with no fences yields no blocks
+
+19 cases, 0 failed
+ok    a stated pair is read
+ok    a document with no claim reads as null
+ok    counts that agree produce no finding
+ok    a stale coherence count fails, and says both numbers
+ok    a stale line-width count fails
+ok    both stale produces both findings
+ok    a deleted claim fails rather than passing vacuously
+ok    a run that printed no count fails
+ok    a claim rewrapped across a line break still reads
+ok    an unrelated case count nearby is not mistaken for the claim
+ok    the claim only inside a fence does not count as claimed
+ok    a summary line yields its count
+ok    a failing run still yields its count
+ok    output with no summary yields null
+ok    a word is a count
+ok    digits are a count too
+ok    a word outside the list is not silently zero
+ok    a document stating the truth produces no finding
+ok    a wrong total fails, and the finding names what was counted
+ok    a wrong house-style count fails
+ok    a wrong ignorable count fails
+ok    a wrong sub-check count fails
+ok    a wrong further-counter-test count fails
+ok    a wrong count in CLAUDE.md fails, and is attributed to CLAUDE.md
+ok    a claim reworded out of the scan is a finding, not a pass
+ok    a number this scan cannot read says so, rather than reporting a mismatch
+ok    rewrapping a claim across a line break does not hide it
+ok    a claim that legitimately lives in a fence is still read
+ok    a fenced copy of a README claim does not satisfy it
+ok    the sub-check table is read, and the options table below it is not
+ok    a document with no such table reports that rather than an empty list
+ok    the named counter-tests are read
+ok    a reworded sentence yields null rather than an empty list
+ok    two lists that agree produce no finding
+ok    an omitted name is reported as omitted
+ok    an invented name is reported separately from an omitted one
+ok    a list that was removed entirely is a finding
+
+37 cases, 0 failed
+ok    the five headings are read
+ok    the shape starts at the first heading
+ok    the offset is the line the shape starts on
+ok    two copies of one shape produce no finding
+ok    a changed guidance line is a finding
+ok    the finding names both files, both line numbers, and the text
+ok    a missing section is a finding about the set and about the body
+ok    a section the copy invented is a finding
+ok    reordering the set is a finding even though every heading is present
+ok    a section added to BOTH files is still a finding
+ok    a handbook with no heading fails rather than passing
+ok    a copy with no heading fails rather than passing
+ok    an empty copy fails
+ok    shape() reports the absence rather than an empty body
+ok    the two opening comments differing is not a finding
+ok    a heading-shaped line inside the opening comment is not a section
+ok    that line does not become the start of the shape either
+ok    a CRLF copy agrees with an LF handbook
+ok    a trailing blank line is not a difference
+ok    both copied templates are declared, with their paths and section sets
+ok    frontmatter on the copy only is not a difference
+ok    the issue shape agrees with itself under its own set
+ok    a pair is held to its own section set, not another pair’s
+
+23 cases, 0 failed
+ok    the section set is the five decided on, in order
+ok    every skill with its page, the five sections, and a link
+ok    a section of its own between the five is allowed
+ok    Windows line endings read the same as Unix ones
+ok    an index link carrying an anchor still links the page
+ok    a skill with no page is a finding
+ok    a page with no skill behind it is a finding
+ok    a page missing a section is a finding
+ok    a renamed section is a missing one
+ok    the five out of order is a finding
+ok    a page the index does not link is a finding
+ok    an index that cannot be read is a finding, not a pass
+ok    no skills at all is a finding, not a pass
+ok    no pages at all is a finding, not a pass
+ok    a `##` inside a fence is not a section
+ok    a third-level heading is not a section
+ok    a link inside a fence does not link the page
+ok    a section found only earlier than its place is missing from it
+
+18 cases, 0 failed

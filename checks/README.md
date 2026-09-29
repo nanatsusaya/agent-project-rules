@@ -401,7 +401,7 @@ lists reports nothing — which is exactly what agreement looks like.
 npm test
 ```
 
-166 cases for the coherence check and 13 for the line-width check, each building
+179 cases for the coherence check and 13 for the line-width check, each building
 a throwaway project and asserting the exit code — and, for the coherence check,
 which check fired. Asserting the exit code alone would pass a check that fails
 for the wrong reason.

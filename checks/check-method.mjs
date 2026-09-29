@@ -25,7 +25,7 @@
 
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { basename, dirname, join, resolve, sep, posix } from 'node:path';
+import { basename, dirname, join, relative, resolve, sep, posix } from 'node:path';
 import {
   DEFAULT_IGNORES,
   embeddedMethodRepos,
@@ -562,7 +562,11 @@ if (decl) {
     // certified coherence for a project whose operating rules were not in the
     // repository at all. That is the arrangement C3 exists to rule out: the next
     // session clones the repository and the instructions are not in it.
-    const p = resolve(project, value);
+    //
+    // Backslashes are read as separators on every platform. A declaration
+    // written on Windows is committed and checked on Linux, where "docs\x.md"
+    // would otherwise name a single file with a backslash in it.
+    const p = resolve(project, value.replace(/\\/g, '/'));
     if (p !== project && !p.startsWith(project + sep)) {
       fail(
         'artefacts',
@@ -609,7 +613,13 @@ if (decl) {
       );
       continue;
     }
-    bound[role] = value;
+    // Stored as the path the documents are listed under — relative, with
+    // forward slashes — and derived from the resolved path rather than from
+    // what was written. The later scans match bound artefacts by string, so
+    // "./docs/STATUS.md" or "docs\STATUS.md" kept as written matched no
+    // document: the role was reported present, and the C3 placeholder scan
+    // silently never looked at it.
+    bound[role] = relative(project, p).split(sep).join('/');
   }
 }
 

@@ -25,6 +25,29 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## Checks 0.5.5
+
+Against catalogue 0.7, which does not move. One change can turn a green run
+red, and one can turn a red run green.
+
+### May change your result
+
+**How a binding is spelt no longer decides what is checked.** A role bound in
+`method.json` as `./docs/STATUS.md`, `docs\STATUS.md` or `docs//STATUS.md` was
+found on disk and reported present, and then matched no document when the
+[C3](rules.md#c3) placeholder scan looked for bound artefacts by path. A state
+file still carrying a template placeholder passed. The same spelling of
+`decisions` — `./docs/adr` or `docs\adr\` — kept [D2](rules.md#d2) from finding
+the index at all, so a project with nothing wrong failed. A binding is now read
+as the path it resolves to, and backslashes are separators on every platform,
+so a declaration written on Windows means the same thing on Linux.
+
+**What you have to do.** Nothing, if your bindings are written as plain
+relative paths with forward slashes. If one starts with `./` or uses
+backslashes, the next run may report placeholders it never saw before — they
+were always there — or stop reporting a missing decision index that was never
+missing.
+
 ## Plugin 0.7.1
 
 Against catalogue 0.7, which does not move. No rule changed; one procedure

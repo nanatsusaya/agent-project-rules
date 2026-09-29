@@ -1392,6 +1392,66 @@ const INDEX_TABLE =
   put(d, 'templates/status.md', '# «Project» status\n\nProgress is in «state artefact».\n');
   expect('a placeholder in an unbound file is not a finding', d, true);
 }
+{
+  // A binding is matched against the documents by path, so how it is spelt
+  // must not decide whether it is scanned. "./docs/STATUS.md" once passed with
+  // a placeholder in it: the role was found on disk, reported present, and
+  // then matched no document. Backslashes are the Windows spelling of the same
+  // path and a declaration written there is checked everywhere else.
+  const spelt = (name, state, decisions = 'docs/adr/') =>
+    baseline(name, {
+      artefacts: {
+        'operating-rules': 'CLAUDE.md',
+        decisions,
+        state,
+        'method-log': 'docs/method-log.md',
+      },
+    });
+  const unfinished = '# Status\n\nProgress is tracked in «state artefact».\n';
+  const record =
+    '# 0001 — First\n\n- **Status:** Accepted\n- **Date:** 2026-01-01\n\n' +
+    'Decided by «decider».\n';
+
+  for (const [slug, state] of [
+    ['dot-slash', './docs/STATUS.md'],
+    ['backslash', 'docs\\STATUS.md'],
+    ['double-slash', 'docs//STATUS.md'],
+  ]) {
+    const d = spelt(`placeholder-state-${slug}`, state);
+    put(d, 'docs/STATUS.md', unfinished);
+    expect(`a placeholder in a state bound as "${state}" fails`, d, false, [
+      'placeholders',
+    ]);
+    const clean = spelt(`clean-state-${slug}`, state);
+    expect(`a finished state bound as "${state}" passes`, clean, true);
+  }
+  for (const [slug, decisions] of [
+    ['dot-slash', './docs/adr'],
+    ['backslash', 'docs\\adr\\'],
+  ]) {
+    const d = spelt(`placeholder-decisions-${slug}`, 'docs/STATUS.md', decisions);
+    put(d, 'docs/adr/0001-first.md', record);
+    expect(`a placeholder in decisions bound as "${decisions}" fails`, d, false, [
+      'placeholders',
+    ]);
+    // D2 reads the same binding to find the records, and failing to match
+    // them would pass a decision the index never lists.
+    const u = spelt(`unlisted-decisions-${slug}`, 'docs/STATUS.md', decisions);
+    put(u, 'docs/adr/0002-second.md', '# 0002 — Second\n\n- **Status:** Proposed\n');
+    expect(`an unlisted decision under "${decisions}" fails`, u, false, [
+      'decisions',
+    ]);
+    const clean = spelt(`clean-decisions-${slug}`, 'docs/STATUS.md', decisions);
+    expect(`finished decisions bound as "${decisions}" pass`, clean, true);
+  }
+  {
+    // The nearest legitimate case: the spelling changed, the template beside
+    // the bound file is still a template.
+    const d = spelt('placeholder-template-dot-slash', './docs/STATUS.md');
+    put(d, 'templates/status.md', '# «Project» status\n\nProgress is in «state artefact».\n');
+    expect('a placeholder in an unbound template beside "./docs/STATUS.md" passes', d, true);
+  }
+}
 
 // --- 7c. declaration hygiene
 {

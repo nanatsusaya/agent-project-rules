@@ -12,13 +12,21 @@ and opens no network connection. It does compile patterns from a catalogue —
 [`method/withdrawn.md`](../method/withdrawn.md) — and it prints text that came
 from your files.
 
-**[`plugins/agent-method/`](../plugins/agent-method/README.md) is five
-procedures an agent follows.** They are Markdown. An agent that has installed
-them does what they say, so a change to one of those files is a change to what
-an agent does on your machine. The plugin carries no version number and
-resolves to this repository's current commit, which means a change reaches you
-on `/plugin update` — deliberately, and it is the reason to read a diff before
-updating rather than after.
+**[`plugins/agent-method/`](../plugins/agent-method/README.md) is procedures
+an agent follows.** They are Markdown. An agent that has installed them does
+what they say, so a change to one of those files is a change to what an agent
+does on your machine. Two of them, `kickoff` and `autopilot`, declare that only
+a person may start them; an agent may start any of the others on its own when a
+task matches its description. From *Extend Claude with skills* (retrieved
+2026-09-29,
+[code.claude.com/docs/en/skills#control-who-invokes-a-skill](https://code.claude.com/docs/en/skills#control-who-invokes-a-skill)):
+
+> **`disable-model-invocation: true`**: Only you can invoke the skill.
+
+The plugin carries a version, and a change reaches you when that version moves
+and you update — the plugin README says
+[how](../plugins/agent-method/README.md#how-updates-reach-you) for each way of
+installing it. That is the moment to read the diff: before updating, not after.
 
 ## What is already handled
 
@@ -33,8 +41,11 @@ of these was a real defect here rather than a hypothetical:
   value could clear the screen and remove real findings from view — the exit
   code stayed correct, but a person reading the output did not.
 - **Paths leaving the project.** An artefact bound to `../elsewhere.md` or to an
-  absolute path is a finding. Nothing outside the project root is read at any
-  point; only its existence was ever tested, and now not even that.
+  absolute path is a finding. The test is on the path as written, though: a
+  bound path that passes through a symbolic link or a Windows junction to
+  somewhere outside the project is followed. There the check tests whether the
+  file exists, whether it is a file and whether it is empty, and reads none of
+  its content. It reports such a binding as present, which is not yet correct.
 
 ## What is not handled, and is not meant to be
 
@@ -42,8 +53,9 @@ of these was a real defect here rather than a hypothetical:
   [P1](../method/rules.md#p1) says a repository holds none, and the report says
   plainly that verifying it belongs to your platform's scanning rather than to
   this tool.
-- **The check does not follow symbolic links out of the project**, and does not
-  report having skipped them.
+- **The directory walk does not follow symbolic links**, and does not report
+  having skipped them. The only exception is a bound artefact reached through
+  one, described above.
 - **The catalogue says nothing about text your project does not control** — an
   issue from a stranger, a dependency's release notes. That gap is named in
   [`method/rationale.md`](../method/rationale.md#where-it-is-most-likely-wrong).

@@ -23,7 +23,7 @@
  *   node check-method.mjs [project-path] [--catalogue <path>] [--quiet]
  */
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { basename, dirname, join, relative, resolve, sep, posix } from 'node:path';
 import {
@@ -528,6 +528,9 @@ if (decl) {
 const bound = {};
 
 if (decl) {
+  // Read here rather than beside `project`: a declaration was found, so the
+  // directory exists and resolving it cannot throw.
+  const physicalProject = realpathSync(project);
   for (const key of Object.keys(decl.artefacts)) {
     if (!ROLES.includes(key)) {
       fail(
@@ -585,6 +588,26 @@ if (decl) {
       );
       continue;
     }
+    // The test above is on the path as written. A symbolic link or a Windows
+    // junction on the way can still lead outside, and every test after this
+    // one follows it: the role was reported present while the file lay beside
+    // the project, where no clone brings it — git records a junction not at
+    // all, and a symbolic link only as a link. Both sides are compared
+    // physically, so a project that is itself reached through a link, such as
+    // a checkout under a linked home directory, is not mistaken for escaping.
+    // Resolving a link is a stat, not a read; nothing outside is opened.
+    const physical = realpathSync(p);
+    if (physical !== physicalProject && !physical.startsWith(physicalProject + sep)) {
+      fail(
+        'artefacts',
+        'method.json',
+        `Role "${role}" is bound to "${value}", which passes through a ` +
+          'symbolic link or junction to a place outside the project. The ' +
+          'repository does not contain what is there, so the next session that ' +
+          'clones it does not have it (rule C3).'
+      );
+      continue;
+    }
     if (ROLE_SHAPES[role] === 'file' && isDirectory(p)) {
       fail(
         'artefacts',
@@ -618,8 +641,11 @@ if (decl) {
     // what was written. The later scans match bound artefacts by string, so
     // "./docs/STATUS.md" or "docs\STATUS.md" kept as written matched no
     // document: the role was reported present, and the C3 placeholder scan
-    // silently never looked at it.
-    bound[role] = relative(project, p).split(sep).join('/');
+    // silently never looked at it. The physical path rather than the written
+    // one, for the same reason: the directory walk does not follow links, so a
+    // binding through a link inside the project would name a path no document
+    // is listed under, while the file it reaches is listed under its own.
+    bound[role] = relative(physicalProject, physical).split(sep).join('/');
   }
 }
 

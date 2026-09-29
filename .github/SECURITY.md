@@ -40,12 +40,11 @@ of these was a real defect here rather than a hypothetical:
   document is stripped of control characters before printing. Without that, a
   value could clear the screen and remove real findings from view — the exit
   code stayed correct, but a person reading the output did not.
-- **Paths leaving the project.** An artefact bound to `../elsewhere.md` or to an
-  absolute path is a finding. The test is on the path as written, though: a
-  bound path that passes through a symbolic link or a Windows junction to
-  somewhere outside the project is followed. There the check tests whether the
-  file exists, whether it is a file and whether it is empty, and reads none of
-  its content. It reports such a binding as present, which is not yet correct.
+- **Paths leaving the project.** An artefact bound to `../elsewhere.md`, to an
+  absolute path, or to a path that passes through a symbolic link or a Windows
+  junction to somewhere outside the project is a finding. To decide that, the
+  check resolves the link — a lookup of where it points, never a read of what
+  is there. Nothing outside the project root is opened.
 
 ## What is not handled, and is not meant to be
 
@@ -54,8 +53,8 @@ of these was a real defect here rather than a hypothetical:
   plainly that verifying it belongs to your platform's scanning rather than to
   this tool.
 - **The directory walk does not follow symbolic links**, and does not report
-  having skipped them. The only exception is a bound artefact reached through
-  one, described above.
+  having skipped them. A bound artefact reached through one inside the project
+  is scanned under its own path, where the walk finds it.
 - **The catalogue says nothing about text your project does not control** — an
   issue from a stranger, a dependency's release notes. That gap is named in
   [`method/rationale.md`](../method/rationale.md#where-it-is-most-likely-wrong).

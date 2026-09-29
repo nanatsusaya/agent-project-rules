@@ -153,8 +153,26 @@ const MUTATIONS = [
   {
     label: 'a binding is kept as written, not as the path it resolves to',
     file: 'checks/check-method.mjs',
-    from: "bound[role] = relative(project, p).split(sep).join('/');",
+    from: "bound[role] = relative(physicalProject, physical).split(sep).join('/');",
     to: 'bound[role] = value;',
+  },
+  {
+    label: 'a binding is kept as the written path, not the physical one',
+    file: 'checks/check-method.mjs',
+    from: "bound[role] = relative(physicalProject, physical).split(sep).join('/');",
+    to: "bound[role] = relative(project, p).split(sep).join('/');",
+  },
+  {
+    label: 'a binding through a link to outside the project is accepted',
+    file: 'checks/check-method.mjs',
+    from: 'if (physical !== physicalProject && !physical.startsWith(physicalProject + sep)) {',
+    to: 'if (false) {',
+  },
+  {
+    label: 'the project root is compared as written, not physically',
+    file: 'checks/check-method.mjs',
+    from: 'const physicalProject = realpathSync(project);',
+    to: 'const physicalProject = project;',
   },
   {
     label: 'a backslash in a binding is not read as a separator',

@@ -109,7 +109,9 @@ And for the list as a whole:
 - **the budget**: a number of changes or an end time. The list expires at the
   budget or when it is done, whichever comes first;
 - **one change open at a time**, unless the plan names an exception. Parallel
-  changes conflict in the state artefact, and in anything generated;
+  changes conflict in the state artefact, and in anything generated. A change
+  waiting for an approval is still open, so the run stops there rather than
+  taking the next entry (step 7);
 - **the review each change gets**, if the operating rules require one.
 
 ## 5. The grant
@@ -180,7 +182,7 @@ For each entry, in order:
    reads: compare the working tree before and after it runs, and treat a
    difference as a finding.
 6. **Merge** within what the entry allows. Where the platform requires an
-   approval, the change waits for it, and the run takes the next entry.
+   approval, the change cannot merge — see *a required approval* below.
 7. **The seam after the merge**: confirm it landed, tidy the branches. The next
    entry on the list needs no further yes
    ([S2](https://github.com/nanatsusaya/agent-project-rules/blob/main/method/rules.md#s2));
@@ -196,15 +198,24 @@ When an entry cannot finish:
 - **Something failed** that you cannot put right within the entry → park it
   with what failed and what was tried
   ([H1](https://github.com/nanatsusaya/agent-project-rules/blob/main/method/rules.md#h1)).
+- **A required approval** → the change stays open, waiting for it, and **the
+  run stops**: go to step 8. Taking the next entry would open a second change
+  while the first is still open, and the two would collide in the state
+  artefact — each closing change marks its entry there. A required approval
+  means a person has to act anyway; the report tells them where. Only an
+  exception the plan names, for these two entries, lets the run go on.
 
 ## 8. Land
 
-When every entry is merged or parked, or the budget runs out:
+When every entry is merged or parked, the budget runs out, or a change waits
+for an approval:
 
-- **Write the closing report** in the run's last change, where the state
-  artefact holds the plan: what merged, what is parked and the question each
-  one waits on with its recommendation, what was not started, and **every
-  judgement call the run made, collected in one list**.
+- **Write the closing report** where the state artefact holds the plan: what
+  merged, **what waits for an approval and where**, what is parked and the
+  question each one waits on with its recommendation, what was not started,
+  and **every judgement call the run made, collected in one list**. It goes in
+  the run's last change — which, when a change is waiting for approval, is that
+  change, so the report arrives with the approval rather than beside it.
 - **Remove what kept the run alive**: the goal ends with its condition — if it
   has not, the person clears it with `/goal clear`; delete the nudge.
 - **Then wind down** with the `session-end` procedure.

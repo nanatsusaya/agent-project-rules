@@ -23,9 +23,12 @@ session. This skill carries that out.
 5. **Waits for your explicit yes.** Nothing else starts it.
 6. **Works the list.** Each change lists its judgement calls — the choices you
    could have made differently. A task that hits a question is parked with the
-   question in its ticket, and the run takes the next one.
-7. **Lands** with a report: what merged, what is parked and why, and every
-   judgement call in one list. That list is what you review.
+   question in its ticket, and the run takes the next one. A change your
+   platform will not merge without your approval stops the run: it waits for
+   you, and nothing else is started beside it.
+7. **Lands** with a report: what merged, what waits for your approval, what is
+   parked and why, and every judgement call in one list. That list is what you
+   review.
 
 ## When to use it
 

@@ -25,6 +25,20 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## Plugin 0.7.2
+
+Against catalogue 0.7, which does not move. No rule changed.
+
+### Worth re-reading
+
+**`autopilot` stops at a change that waits for a required approval.** It used
+to say both that the plan holds one change open at a time and that a change
+waiting for an approval lets the run take the next entry — which opens a second
+change while the first is still open, and the two collide in the state
+artefact. It now stops, and the closing report, carried in the waiting change,
+says what waits and where. A plan can still name an exception for two entries
+that do not collide.
+
 ## Checks 0.5.5
 
 Against catalogue 0.7, which does not move. One change can turn a green run

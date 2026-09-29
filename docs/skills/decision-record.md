@@ -17,6 +17,8 @@ Writes a decision down, and takes it from proposed to accepted.
   into resolved ones — `R1`, `R2` and so on, with what was decided and why —
   and marks the record *accepted* on the same branch. The merge is what
   accepts it.
+- **Keeps the state file true**: if the decision changes what comes next, the
+  state file says so in the same change, so there is no gap after the merge.
 
 ## When to use it
 

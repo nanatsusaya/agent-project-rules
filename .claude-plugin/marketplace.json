@@ -10,7 +10,7 @@
       "name": "agent-method",
       "source": "./plugins/agent-method",
       "description": "Eight procedures that make the seams of a working session repeatable: bring-up, the transition after a merged change, wind-down, writing a decision record, adopting the method into a project, starting a project from a description, working through an approved plan, and an interview in rounds for the decisions a piece of work needs first.",
-      "version": "0.7.0",
+      "version": "0.7.1",
       "author": {
         "name": "Daniel Wagner",
         "url": "https://github.com/nanatsusaya"

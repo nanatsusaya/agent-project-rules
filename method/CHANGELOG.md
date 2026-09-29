@@ -22,6 +22,20 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## Plugin 0.7.1
+
+Against catalogue 0.7, which does not move. No rule changed; one procedure
+caught up with one.
+
+### Worth re-reading
+
+**`decision-record` now follows [S3](rules.md#s3) as 0.7 worded it.** Its last
+step still told the agent to update the state artefact *after* the merge — the
+change of its own that S3 was reworded to avoid, and a window in which the trunk
+states a position it has already left. The update now travels with the flip to
+`Accepted`, on the same branch, when the decision changes what happens next.
+If your project copied or rewrote this procedure, make the same change there.
+
 ## Checks 0.5.4
 
 Against catalogue 0.7, which does not move. **Nothing here changes an adopter's

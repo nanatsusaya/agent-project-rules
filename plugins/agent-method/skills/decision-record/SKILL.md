@@ -103,13 +103,21 @@ accepted — stale documentation, which [C4](https://github.com/nanatsusaya/agen
 calls a defect rather than untidiness — and it would cost a second trip through
 review to record something that already happened.
 
+If accepting it changes what happens next — it unblocks a task, closes a
+question the state artefact names, or moves the next step — bring the state
+artefact current **in this same change**, for the same reason:
+[S3](https://github.com/nanatsusaya/agent-project-rules/blob/main/method/rules.md#s3)
+has the change that moves the position carry the update. If it changes nothing
+there, leave the artefact alone.
+
 Push to the same change under review; leave a short note that it is ready
 again.
 
 ## 6. After it merges
 
-Sync the trunk, delete the branch, and update the state artefact if this changed
-what happens next.
+Sync the trunk and delete the branch. Nothing is left to update: the record,
+the index and the state artefact all arrived with the merge. The seam to the
+next task is `after-merge`, which checks that they did.
 
 Remember that **accepted means decided, not built.** Nothing about the status
 says the thing exists.
@@ -129,3 +137,5 @@ says the thing exists.
 - Are the open questions now **Resolved questions**, with `R1..Rn`?
 - Is the status `Accepted` in the record **and** in the index, so that nothing
   is left for a follow-up change to correct?
+- If the decision changes what happens next, does the state artefact say so in
+  this change?

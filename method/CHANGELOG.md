@@ -7,13 +7,16 @@ that question.
 Only changes that reach an adopter are listed. Wording, examples and internal
 comments are not.
 
-**Two things are versioned here, and they are separate sequences.** A bare
+**Three things are versioned here, and they are separate sequences.** A bare
 number — `0.3`, `0.2` — is the **catalogue**, the version in
 [`VERSION`](VERSION) and the one your `method.json` pins to. A heading that says
-*checks* is the **tools**, versioned in `package.json`. They are written down
-together because a check that starts deciding differently changes what your
-green run means, exactly as a changed rule does; splitting them across two files
-would mean two places to look for one answer.
+*checks* is the **tools**, versioned in `package.json`. A heading that says
+*plugin* is the **procedures** alone, for a release that changes one of them
+while the catalogue stands still; otherwise a plugin change is listed under the
+catalogue release that carries it. They are written down together because a
+check that starts deciding differently, or a procedure that starts doing
+something else, changes what your project does exactly as a changed rule does;
+splitting them across files would mean several places to look for one answer.
 [`README.md`](README.md#what-each-version-number-means) says which number
 carries which claim.
 

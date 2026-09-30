@@ -25,6 +25,24 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## Checks 0.5.7
+
+Against catalogue 0.7, which does not move. **Nothing here changes an adopter's
+result.** `check-method.mjs` is untouched.
+
+### Fixes with no effect on an adopter
+
+**The `Assisted-by:` trailer is checked.**
+[`checks/commit-trailers.mjs`](../checks/commit-trailers.mjs) fails when a
+commit in a range names an agent as co-author and carries no `Assisted-by:`.
+CI runs it over the commits of each pull request to this repository. The
+convention was written down and nothing held it: a harness adds its own
+co-author line without being told, and the repository's line depended on the
+agent remembering.
+
+It takes a range and has no default, because a guessed base reads either
+nothing or the whole history. A range with no commits in it is a finding.
+
 ## Checks 0.5.6
 
 Against catalogue 0.7, which does not move. One change can turn a green run

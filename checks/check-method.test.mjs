@@ -40,6 +40,10 @@ const CATALOGUE_VERSION = readFileSync(join(REAL_CATALOGUE, 'VERSION'), 'utf8').
 const root = mkdtempSync(join(tmpdir(), 'adm-test-'));
 let failures = 0;
 let ran = 0;
+// A case the platform cannot build is counted and named as skipped rather than
+// left out. Leaving it out made the count differ between platforms, and the
+// count is a published figure: checks/README.md states it and a lint holds it.
+let skipped = 0;
 
 /** Write a file, creating parent directories. */
 function put(base, rel, content) {
@@ -1500,6 +1504,8 @@ const INDEX_TABLE =
     } catch (e) {
       if (e.code !== 'EPERM') throw e;
       made = false;
+      ran++;
+      skipped++;
       console.log('skip  a file symlink to outside (this platform refused to create one)');
     }
     if (made) {
@@ -1950,5 +1956,5 @@ function expectRefused(label, catalogue, project, mustSay = null) {
 rmSync(root, { recursive: true, force: true });
 
 console.log('');
-console.log(`${ran} cases, ${failures} failed`);
+console.log(`${ran} cases, ${failures} failed${skipped ? `, ${skipped} skipped` : ''}`);
 process.exit(failures === 0 ? 0 : 1);

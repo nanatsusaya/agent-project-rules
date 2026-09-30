@@ -1,7 +1,7 @@
 # Checks
 
-Eight of them, and only the first is meant for your project.
-[`check-method.mjs`](check-method.mjs) is the coherence check. The other seven
+Nine of them, and only the first is meant for your project.
+[`check-method.mjs`](check-method.mjs) is the coherence check. The other eight
 are [this repository's own house style](#this-repositorys-own-checks) and know
 nothing about an adopting project.
 
@@ -201,7 +201,7 @@ read.
 ## This repository's own checks
 
 None of them is part of the method. They enforce conventions this repository
-holds itself to, and an adopting project is free to ignore all seven.
+holds itself to, and an adopting project is free to ignore all eight.
 
 ```bash
 node checks/line-width.mjs <project-path> [--limit 80]
@@ -395,6 +395,31 @@ Finding no skills, or no pages, is a finding rather than a pass. A moved
 directory is the likeliest way to get there, and a comparison of two empty
 lists reports nothing — which is exactly what agreement looks like.
 
+```bash
+node checks/commit-trailers.mjs origin/main..HEAD
+```
+
+[`commit-trailers.mjs`](commit-trailers.mjs) fails when a commit in the range
+names an agent as co-author and carries no `Assisted-by:` trailer. The
+convention is under *Delivery* in [`CLAUDE.md`](../CLAUDE.md#delivery). A
+harness adds its own co-author line whatever the repository asks, so the
+repository's line is there only if the agent remembers an instruction that
+competes with that default. It had held since the convention was written, and
+nothing made it hold.
+
+It reads commit messages, not files, so it takes a range and is not part of
+`npm run lint`. Over the whole history it would report every commit older than
+the convention, and those are not rewritten. CI runs it over the commits of a
+pull request, before the owner merges. There is no default range: a guessed
+base reads either nothing or everything. A range with no commits in it is a
+finding, because a check that read nothing reports what agreement looks like.
+
+A commit is known to be agent-assisted only when a co-author line names an
+agent. A commit an agent wrote with no attribution at all reads exactly like a
+person's, and nothing in the message can tell them apart. A person as
+co-author owes no trailer. Merge commits are left out: the platform writes
+them when the owner merges.
+
 ## The counter-tests
 
 ```bash
@@ -407,14 +432,15 @@ which check fired. Asserting the exit code alone would pass a check that fails
 for the wrong reason.
 
 Those two figures are themselves checked, by
-[`documented-counts.mjs`](documented-counts.mjs) under `npm run lint`. Six
+[`documented-counts.mjs`](documented-counts.mjs) under `npm run lint`. Seven
 further counter-tests —
 [`documented-counts.test.mjs`](documented-counts.test.mjs),
 [`documented-version.test.mjs`](documented-version.test.mjs),
 [`install-commands.test.mjs`](install-commands.test.mjs),
 [`plugin-version.test.mjs`](plugin-version.test.mjs),
-[`copied-templates.test.mjs`](copied-templates.test.mjs) and
-[`skill-pages.test.mjs`](skill-pages.test.mjs) — cover those
+[`copied-templates.test.mjs`](copied-templates.test.mjs),
+[`skill-pages.test.mjs`](skill-pages.test.mjs) and
+[`commit-trailers.test.mjs`](commit-trailers.test.mjs) — cover those
 checks in turn and are deliberately not given figures of their own. One more
 advertised number would be one more thing to keep true, and nothing would be
 checking it.

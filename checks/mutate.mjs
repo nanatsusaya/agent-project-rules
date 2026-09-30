@@ -45,6 +45,7 @@ const SUITES = {
   template: 'checks/copied-templates.test.mjs',
   counts: 'checks/documented-counts.test.mjs',
   pages: 'checks/skill-pages.test.mjs',
+  trailers: 'checks/commit-trailers.test.mjs',
 };
 
 /**
@@ -864,6 +865,90 @@ const MUTATIONS = [
     file: 'checks/lib/skill-pages.mjs',
     from: '(?:#[^)]*)?',
     to: '',
+  },
+
+  // --- the commit-trailers check
+  {
+    label: 'a commit naming an agent never owes the trailer',
+    suite: 'trailers',
+    file: 'checks/lib/commit-trailers.mjs',
+    from: '  if (assisted.length) return null;',
+    to: '  return null;',
+  },
+  {
+    // A person as co-author owes nothing; counting every co-author as an agent
+    // is the false alarm that would teach people to ignore the check.
+    label: 'every co-author counts as an agent',
+    suite: 'trailers',
+    file: 'checks/lib/commit-trailers.mjs',
+    from: '.filter((t) => AGENT.some((re) => re.test(t.value)));',
+    to: '.filter(() => true);',
+  },
+  {
+    label: 'an empty Assisted-by counts',
+    suite: 'trailers',
+    file: 'checks/lib/commit-trailers.mjs',
+    from: "t.key === 'assisted-by' && t.value !== ''",
+    to: "t.key === 'assisted-by'",
+  },
+  {
+    label: 'trailer keys are compared with their case',
+    suite: 'trailers',
+    file: 'checks/lib/commit-trailers.mjs',
+    from: 'found.push({ key: key.toLowerCase(), value })',
+    to: 'found.push({ key, value })',
+  },
+  {
+    // Where git interpret-trailers looks, and where this repository's
+    // Assisted-by is not.
+    label: 'only the last paragraph is read for trailers',
+    suite: 'trailers',
+    file: 'checks/lib/commit-trailers.mjs',
+    from: '    .slice(1)\n',
+    to: '    .slice(-1)\n',
+  },
+  {
+    label: 'the subject line is read as a trailer',
+    suite: 'trailers',
+    file: 'checks/lib/commit-trailers.mjs',
+    from: '    .slice(1)\n',
+    to: '    .slice(0)\n',
+  },
+  {
+    label: 'a trailer line inside prose counts',
+    suite: 'trailers',
+    file: 'checks/lib/commit-trailers.mjs',
+    from: '    if (parsed.some((m) => !m)) continue;\n    for (const [, key, value] of parsed)',
+    to: '    for (const [, key, value] of parsed.filter(Boolean))',
+  },
+  {
+    label: 'merge commits are held to the trailer',
+    suite: 'trailers',
+    file: 'checks/commit-trailers.mjs',
+    from: "['log', '--no-merges', '--format",
+    to: "['log', '--format",
+  },
+  {
+    label: 'no range given is accepted',
+    suite: 'trailers',
+    file: 'checks/commit-trailers.mjs',
+    from: 'if (!range) fail(',
+    to: 'if (false) fail(',
+  },
+  {
+    label: 'a failing git log is not reported as such',
+    suite: 'trailers',
+    file: 'checks/commit-trailers.mjs',
+    from: 'if (log.status !== 0) fail(',
+    to: 'if (false) fail(',
+  },
+  {
+    // The silent no-op: nothing read, and a report that reads like agreement.
+    label: 'a range with no commits reports agreement',
+    suite: 'trailers',
+    file: 'checks/commit-trailers.mjs',
+    from: 'if (!commits.length) fail(',
+    to: 'if (false) fail(',
   },
 ];
 

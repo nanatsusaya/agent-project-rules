@@ -80,6 +80,11 @@ pull request is a different project.
   not the same thing — this code was written on Windows, and the matrix exists
   because nobody had ever run it anywhere else.
 
+- **If an agent helped with a commit, say so** in an `Assisted-by:` trailer
+  naming what assisted. CI fails a pull request with a commit that names an
+  agent as co-author and carries no `Assisted-by:`. Why a trailer and not the
+  description is in
+  [`agent-manual/README.md`](../agent-manual/README.md#provenance-goes-in-the-commit-not-the-description).
 - **If you change a check, add its counter-test cases** — the deliberate
   violation it must catch, *and* the nearest legitimate case it must not fire
   on. A check without the second kind of case is a check nobody should trust.

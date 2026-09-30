@@ -13,7 +13,8 @@ what is written in your repository. This project is a set of rules for what to
 write down, where, and when — and eight skills that do the routine parts for
 you.
 
-It works for code and for projects with no code at all, alone or in a team.
+It works for code and for projects with no code at all. Nothing in it assumes
+one maintainer, but team use is still [untested](docs/faq.md).
 
 ## What goes wrong without it
 

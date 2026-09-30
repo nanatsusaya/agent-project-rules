@@ -112,7 +112,9 @@ try {
   // would still exit 1 by falling into the next.
   const none = run();
   expect('CLI: no range given fails, and says so',
-    [none.status, none.stdout.includes('no range given')], [1, true]);
+    // The finding's own words, not "no range given" alone: the header prints
+    // that as well, so it would match with the guard switched off.
+    [none.status, none.stdout.includes('no range given — name one')], [1, true]);
   const empty = run(`${human}..${human}`);
   expect('CLI: a range with no commits fails — nothing was read',
     [empty.status, empty.stdout.includes('nothing was read')], [1, true]);

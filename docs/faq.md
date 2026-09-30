@@ -22,8 +22,15 @@ for a software product. [`method/adapting.md`](../method/adapting.md) says which
 rules change shape there.
 
 **Does it work in a team?**
-Yes. Nothing in the rules assumes a single maintainer. Where a rule needs a
-different form for one person or for a team, the rule says so.
+It is meant to, but that has not been tested yet. Nothing in the rules
+assumes a single maintainer, and
+[`method/adapting.md`](../method/adapting.md#a-team-rather-than-one-maintainer)
+says which rules change shape with several people. What nobody has tried
+is several people or agents working at the same time. The first place that
+would show is the [state file](glossary.md): it names one next step, so two
+changes made side by side both rewrite it, and the second has to be reconciled
+with the first. The rationale lists this among the places the method is
+[most likely wrong](../method/rationale.md#where-it-is-most-likely-wrong).
 
 **What does it cost?**
 Mainly review time: a person approves every change, and that caps how fast

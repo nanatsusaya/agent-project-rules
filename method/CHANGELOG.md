@@ -25,6 +25,32 @@ rule is withdrawn, [`withdrawn.md`](withdrawn.md) carries the entry and a check
 fails on documents still teaching it — this file does not replace that
 mechanism.
 
+## Checks 0.5.6
+
+Against catalogue 0.7, which does not move. One change can turn a green run
+red.
+
+### May change your result
+
+**A binding through a link to outside the project is a finding.** A role bound
+to `../elsewhere.md` or an absolute path already was. A path that stayed inside
+as written but passed through a symbolic link or a Windows junction to a
+directory beside the project was followed instead: the role was reported
+present, and its file was never scanned. No clone brings that file along — git
+records a junction not at all, and a symbolic link only as a link — which is
+the case [C3](rules.md#c3) exists for. The check now compares the physical
+path with the physical project root, so a project that is itself reached
+through a link, a checkout under a linked home directory for instance, still
+passes.
+
+A binding through a link that stays **inside** the project is now scanned for
+placeholders under the file's own path. It used to be skipped, because the
+directory walk does not follow links and the binding named the link.
+
+**What you have to do.** Nothing, unless a bound artefact lives outside your
+repository behind a link. Then it was never in the repository: move it in, or
+unbind the role and record the adaptation.
+
 ## Plugin 0.7.2
 
 Against catalogue 0.7, which does not move. No rule changed.

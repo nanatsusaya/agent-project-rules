@@ -16,7 +16,7 @@
  * Usage: node check-method.test.mjs
  */
 
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync, cpSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync, cpSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -40,6 +40,10 @@ const CATALOGUE_VERSION = readFileSync(join(REAL_CATALOGUE, 'VERSION'), 'utf8').
 const root = mkdtempSync(join(tmpdir(), 'adm-test-'));
 let failures = 0;
 let ran = 0;
+// A case the platform cannot build is counted and named as skipped rather than
+// left out. Leaving it out made the count differ between platforms, and the
+// count is a published figure: checks/README.md states it and a lint holds it.
+let skipped = 0;
 
 /** Write a file, creating parent directories. */
 function put(base, rel, content) {
@@ -314,6 +318,15 @@ expect('a complete, coherent project passes', baseline('good'), true);
   });
   writeFileSync(join(root, 'outside-rules.md'), '# Rules\n\nElsewhere.\n', 'utf8');
   expect('an artefact bound outside the project root fails', d, false, ['artefacts']);
+  // The physical test further on would catch this too, but only after an
+  // existence test had looked outside the project. A path that is outside as
+  // written is refused before anything is touched, and the message saying so
+  // is how a case can tell the two apart.
+  expectSays(
+    'an artefact outside as written is refused before anything outside is touched',
+    d,
+    /bound to "\.\.\/outside-rules\.md", which resolves outside the project/
+  );
 }
 {
   // The nearest legitimate case: deep is fine, outside is not. Without this the
@@ -1452,6 +1465,77 @@ const INDEX_TABLE =
     expect('a placeholder in an unbound template beside "./docs/STATUS.md" passes', d, true);
   }
 }
+{
+  // A link on the way to a bound artefact. The path as written stays inside
+  // the project, so only the physical path can tell where the file is. A
+  // junction is what Windows creates without privilege; elsewhere the same
+  // call makes a directory symlink, which is what those platforms have.
+  const linkDir = (target, path) =>
+    symlinkSync(target, path, process.platform === 'win32' ? 'junction' : 'dir');
+  const withState = (name, state) =>
+    baseline(name, {
+      artefacts: {
+        'operating-rules': 'CLAUDE.md',
+        decisions: 'docs/adr/',
+        state,
+        'method-log': 'docs/method-log.md',
+      },
+    });
+
+  {
+    const d = withState('state-through-link-outside', 'state/STATUS.md');
+    const outside = join(root, 'state-through-link-outside-target');
+    put(outside, 'STATUS.md', '# Status\n\nNothing yet.\n');
+    linkDir(outside, join(d, 'state'));
+    expect('a state reached through a directory link to outside fails', d, false, [
+      'artefacts',
+    ]);
+  }
+  {
+    // A file-level symbolic link needs a privilege on Windows that a test run
+    // usually lacks. Skipped there with a line saying so, rather than passed.
+    const d = withState('state-file-link-outside', 'docs/STATUS.md');
+    const outside = join(root, 'state-file-link-outside-target');
+    put(outside, 'STATUS.md', '# Status\n\nNothing yet.\n');
+    rmSync(join(d, 'docs/STATUS.md'));
+    let made = true;
+    try {
+      symlinkSync(join(outside, 'STATUS.md'), join(d, 'docs/STATUS.md'), 'file');
+    } catch (e) {
+      if (e.code !== 'EPERM') throw e;
+      made = false;
+      ran++;
+      skipped++;
+      console.log('skip  a file symlink to outside (this platform refused to create one)');
+    }
+    if (made) {
+      expect('a state that is a file symlink to outside fails', d, false, ['artefacts']);
+    }
+  }
+  {
+    // The nearest legitimate case: a link that stays inside. It passes, and
+    // the file it reaches is still scanned — by its own path, since the
+    // directory walk does not follow the link.
+    const d = withState('state-through-link-inside', 'current/STATUS.md');
+    linkDir(join(d, 'docs'), join(d, 'current'));
+    expect('a state reached through a link inside the project passes', d, true);
+    const u = withState('state-through-link-inside-unfinished', 'current/STATUS.md');
+    put(u, 'docs/STATUS.md', '# Status\n\nProgress is tracked in «state artefact».\n');
+    linkDir(join(u, 'docs'), join(u, 'current'));
+    expect('a placeholder reached through a link inside the project fails', u, false, [
+      'placeholders',
+    ]);
+  }
+  {
+    // A project that is itself reached through a link, as a checkout under a
+    // linked home directory is. Comparing a physical file with the written
+    // root would call every artefact in it outside.
+    const d = baseline('project-behind-link');
+    const via = join(root, 'project-behind-link-via');
+    linkDir(d, via);
+    expect('a project reached through a link passes', via, true);
+  }
+}
 
 // --- 7c. declaration hygiene
 {
@@ -1872,5 +1956,5 @@ function expectRefused(label, catalogue, project, mustSay = null) {
 rmSync(root, { recursive: true, force: true });
 
 console.log('');
-console.log(`${ran} cases, ${failures} failed`);
+console.log(`${ran} cases, ${failures} failed${skipped ? `, ${skipped} skipped` : ''}`);
 process.exit(failures === 0 ? 0 : 1);
